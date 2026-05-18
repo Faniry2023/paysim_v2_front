@@ -1,0 +1,119 @@
+
+<div class="chat-container">
+  <!-- Sidebar -->
+
+  <!--
+  <div class="sidebar">
+    <div class="tabs">
+      <button [class.active]="activeTab === 'broadcast'" (click)="activeTab = 'broadcast'">
+        📢 Broadcast
+      </button>
+      <button [class.active]="activeTab === 'private'" (click)="activeTab = 'private'">
+        💬 Private
+      </button>
+      <button [class.active]="activeTab === 'group'" (click)="activeTab = 'group'">
+        👥 Groups
+      </button>
+    </div>-->
+    
+    <!-- Online Users -->
+     <!--
+    <div class="online-users" *ngIf="activeTab === 'private'">
+      <h3>Online Users ({{onlineUsers.length}})</h3>
+      <div class="user-list">
+        <div *ngFor="let user of onlineUsers" 
+             class="user-item" 
+             (click)="selectUser(user.id)"
+             [class.selected]="selectedUser === user.id">
+          <span class="online-indicator"></span>
+          <span>{{user.name}}</span>
+          <span *ngIf="typingUsers.has(user.id)" class="typing">typing...</span>
+        </div>
+      </div>
+    </div>-->
+    
+    <!-- Groups 
+     <!--
+    <div class="groups" *ngIf="activeTab === 'group'">
+      <h3>Available Groups</h3>
+      <div class="group-list">
+        <div *ngFor="let group of availableGroups" 
+             class="group-item" 
+             (click)="joinGroup(group)">
+          # {{group}}
+        </div>
+      </div>
+      
+      <div *ngIf="currentGroup" class="current-group">
+        <h3>Current: {{currentGroup}}</h3>
+        <button (click)="leaveGroup()">Leave</button>
+      </div>
+      
+      <div class="create-group">
+        <input [formControl]="groupForm.controls['groupName']" 
+               placeholder="New group name">
+        <button (click)="joinGroup()">Create/Join</button>
+      </div>
+    </div>
+  </div>-->
+  
+  <!-- Chat Area -->
+   
+  <div class="chat-area">
+    <!-- Messages -->
+    <div class="messages" #messageContainer>
+      <!-- Broadcast Messages -->
+      <div *ngIf="activeTab === 'broadcast'">
+        <div *ngFor="let msg of broadcastMessages" class="message">
+          <div class="message-header">
+            <strong>{{msg.fromUserName}}</strong>
+            <small>{{msg.timestamp | date:'HH:mm'}}</small>
+          </div>
+          <div class="message-body">{{msg.message}}</div>
+        </div>
+      </div>
+      
+      <!-- Private Messages -->
+      <div *ngIf="activeTab === 'private' && selectedUser">
+        <div *ngFor="let msg of getPrivateMessagesForUser(selectedUser)" 
+             class="message" 
+             [class.own-message]="msg.fromUserId === currentUserId">
+          <div class="message-header">
+            <strong>{{msg.fromUserName}}</strong>
+            <small>{{msg.timestamp | date:'HH:mm'}}</small>
+          </div>
+          <div class="message-body">{{msg.message}}</div>
+        </div>
+      </div>
+      
+      <!-- Group Messages -->
+      <div *ngIf="activeTab === 'group' && currentGroup">
+        <div *ngFor="let msg of groupMessages.get(currentGroup)" 
+             class="message" 
+             [class.own-message]="msg.fromUserId === currentUserId">
+          <div class="message-header">
+            <strong>{{msg.fromUserName}}</strong>
+            <small>{{msg.timestamp | date:'HH:mm'}}</small>
+          </div>
+          <div class="message-body">{{msg.message}}</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Message Input -->
+    <div class="message-input">
+      <textarea [formControl]="messageForm.controls['message']"
+                (keyup.enter)="activeTab === 'broadcast' ? sendBroadcast() : 
+                               activeTab === 'private' ? sendPrivateMessage() : 
+                               sendGroupMessage()"
+                (keyup)="activeTab === 'private' ? onTyping() : null"
+                placeholder="Type your message..."></textarea>
+      <button (click)="activeTab === 'broadcast' ? sendBroadcast() : 
+                        activeTab === 'private' ? sendPrivateMessage() : 
+                        sendGroupMessage()">
+        Send
+      </button>
+    </div>
+  </div>
+</div>
+-->

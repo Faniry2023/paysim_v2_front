@@ -1,0 +1,96 @@
+.container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.container .choice{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    a{
+        cursor: pointer;
+        padding: 20px;
+        background-color: blue;
+        color: white;
+        border-radius: 5px;
+        font-size: 20px;
+    }
+    a.active{
+        background-color: rgb(0, 0, 88);
+    }
+}
+.container .vendeur{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    a{
+        background-color: rgb(59, 59, 0);
+        color: rgb(255, 255, 146);
+        padding: 20px 40px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    a:hover{
+        letter-spacing: 3px;
+    }
+    .qr{
+        padding: 10px;
+        background-color: blue;
+        color: white;
+        border-radius: 10px;
+    }
+}
+.container .vendeur form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.container .ach form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.valide{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    padding: 10px;
+    border: 6px blue dotted;
+    border-radius: 10px;
+    .logo{
+        border-radius: 10px;
+        background-color: green;
+        padding: 40px;
+        img{
+            width: 80px;
+            height: auto;
+        }
+    }
+    h2{
+        text-align: center;
+    }
+}
+.info{
+    background-color: yellow;
+    padding: 5px 50px;
+    letter-spacing: 2px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.ach  h1{
+    background-color: rgb(0, 0, 32);
+    color: white;
+    text-align: center;
+    padding: 5px 10px;
+}

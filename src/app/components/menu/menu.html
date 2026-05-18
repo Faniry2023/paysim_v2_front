@@ -1,0 +1,25 @@
+<div class="menu" [class.show]="menuShow()">
+    <div class="header">
+        <div class="logo"><img src="PaySim.png" alt=""></div>
+        <div class="firstname">RAFANOMEZANTSOA</div>
+        <div class="lastname">Mahazo Tina Faniry</div>
+    </div>
+    <hr>
+    <div class="sim">
+        <a  (click)="pageStore.setPageState('Sim')" [class.active]="pageStore.page() === 'Sim'">
+            <img src="simulation.png" alt="">
+        </a>
+    </div>
+    <div class="items">
+        <a (click)="pageStore.setPageState('Developer')" [class.active]="pageStore.page() === 'Developer'">Developpeur</a>
+        <a (click)="pageStore.setPageState('Project')" [class.active]="pageStore.page() === 'Project'">Projet</a>
+    </div>
+    <div class="logout">
+        <a (click)="logout()">Déconnection</a>
+        <a class="rtr" (click)="menuShow.set(false)"><mat-icon>arrow_back</mat-icon></a>
+    </div>
+</div>
+
+<div class="showGo" [class.hide]="menuShow()">
+    <a class="rtr" (click)="menuShow.set(true)"><mat-icon>arrow_forward</mat-icon></a>
+</div>

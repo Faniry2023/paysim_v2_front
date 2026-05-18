@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #4431e9, #010030);
+}
+
+.register-container {
+    background: white;
+    padding: 40px;
+    
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 550px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    input{
+        font-size: 20px;
+    }
+  .all-user{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .confInfo .mdp-re{
+      width: 210px;
+    }
+  }
+}
+::ng-deep .white-spinner circle {
+  stroke: #010030 !important;
+}
+
+button {
+    padding: 10px;
+    background-color: #00aaff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0077cc;
+}
+
+.login-link {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
+
+/*######*/
+.password-bar {
+  display: flex;
+  height: 5px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  width: 200px;
+}
+
+.bar {
+  flex: 1;
+  margin-right: 3px;
+  background-color: #ccc;
+  transition: all 0.5s ease;
+  opacity: 0.5;
+}
+
+.bar.active {
+  opacity: 1;
+}
+
+.bar.yellow.active { background-color: yellow; }
+.bar.green.active { background-color: green; }
+.bar.blue.active { background-color: blue; }
+
+.error {
+  background-color: rgb(255, 179, 179);
+  color: rgb(255, 0, 0);
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+}

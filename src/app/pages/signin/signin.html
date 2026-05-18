@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - PaySim</title>
+</head>
+<body>
+<div class="register-container">
+    <img src="PaySim.png" alt="" width="300" height="300">
+    <h2>Créer un compte PaySim</h2>
+    <form [formGroup]="sigingFormGroup" (submit)="siging()">
+        <div class="all-user">
+            <div class="personalInfo">
+                <mat-form-field>
+                    <mat-label>Nom </mat-label>
+                    <input matInput type="text" formControlName="firstname">
+                    <mat-error>Ce champ est obligatoire</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Prenom </mat-label>
+                    <input matInput type="text" formControlName="lastname">
+                    <mat-error>Ce champ est obligatoire</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Adresse </mat-label>
+                    <input matInput type="text" formControlName="addres">
+                    <mat-error>Ce champ est obligatoire</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Date de naissance </mat-label>
+                    <input matInput type="date" formControlName="birthday">
+                    <mat-error>Ce champ est obligatoire</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="confInfo">
+                <mat-form-field>
+                    <mat-label>Email </mat-label>
+                    <input matInput type="email" formControlName="email">
+                    <mat-error>Ce champ est obligatoire</mat-error>
+                </mat-form-field>
+                <mat-form-field class="mdp-re">
+                    <mat-label>Mot de passe </mat-label>
+                    <input matInput [type]="hide() ? 'password' : 'text'" formControlName="mdp"
+                    (focus)="onFocusInput()" (input)="TestMdp()" (blur)="Out()" >
+                    <mat-icon matSuffix (click)="togglePassword($event)" style="cursor: pointer;">
+                        {{hide() ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                    <mat-error>Ce champ est obligatoire</mat-error>
+                    @if(message()){
+                        <p style="color: red; font-size: 10px;">*Votre mot de passe  n'est pas encore assez fort</p>
+                    }
+                </mat-form-field>
+                <!-- Barre de progression du mot de passe -->
+                @if(focus()){
+                    <div class="password-bar">
+                        <div class="bar yellow" [class.active]="(compteurTest >= 1)"></div>
+                        <div class="bar green" [class.active]="(compteurTest >= 2)"></div>
+                        <div class="bar blue" [class.active]="(compteurTest >= 3)"></div>
+                    </div>
+                }
+                <mat-form-field>
+                    <mat-label>Confirmé votre mot de passe </mat-label>
+                    <input matInput type="password"  formControlName="cfm" (focus)="onFocusCfm()">
+                    @if (!passwordMatch) {
+                        <div class="error">
+                            Confirmation non identique au mot de passe
+                        </div>
+                    }
+                    <mat-error>Ce champ est obligatoire</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+            <button mat-flat-button type="submit" style="display: flex; flex-direction: column;"
+            [disabled]="sigingFormGroup.invalid || (compteurTest < 3) || !passwordMatch || store.loading()">
+            @if(store.loading()){
+                <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+            }@else {
+                S'inscrire
+            }
+                
+            </button>
+            @if(store.isError()){
+                <p class="error"> {{store.error()}} </p>
+            }
+        <p class="login-link">Déjà un compte ? <a href="/signup">Connectez-vous</a></p>
+    </form>
+</div>
+</body>
+</html>

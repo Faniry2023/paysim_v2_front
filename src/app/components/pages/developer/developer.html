@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="form">
+        <h1>Créer mon compte developpeur</h1>
+        <form [formGroup]="developerFormGroup" (ngSubmit)="save()">
+            <div class="allform">
+                <div class="dev">
+                    <mat-form-field>
+                        <mat-label>CIN </mat-label>
+                        <input matInput type="text" formControlName="cin">
+                        <mat-error>Ce champ est obligatoire</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Numéro Yas </mat-label>
+                        <input matInput type="number" formControlName="yas" placeholder="034/038 xx xxx xx">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Numéro Airtel </mat-label>
+                        <input matInput type="number" formControlName="air" placeholder="033 xx xxx xx">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Numéro Orange </mat-label>
+                        <input matInput type="number" formControlName="org" placeholder="032/037 xx xxx xx">
+                    </mat-form-field>
+                </div>
+            </div>
+
+        <button mat-flat-button type="submit" [disabled]="!developerFormGroup.valid">
+            @if(developerStore.loading()){
+                <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+            }@else {
+                @if(isUpdate()){
+                    Modifier
+                }@else {
+                    Enregistrer
+                }
+            }
+        </button>
+        @if(isUpdate()){
+            <button mat-flat-button type="button" (click)="cancel()">
+                Annuler
+            </button>
+        }
+        @if (!isNumOk()) {
+            <p class="error-number">Vous devez nous donner au moins un numéro téléphone disponible</p>
+        }
+        </form>
+    </div>
+    <div class="value">
+        <h1>Votre Information</h1>
+        <div class="one">
+            <h2>CIN</h2>
+            <p>{{developerAccount()?.cin}}</p>
+        </div>
+        <div class="one">
+            <h2>Numéro Yas</h2>
+            <p>{{developerAccount()?.numberYas}}</p>
+        </div>
+        <div class="one">
+            <h2>Numéro Airtel</h2>
+            <p>{{developerAccount()?.numberAirtel}}</p>
+        </div>
+        <div class="one">
+            <h2>Numéro Orange</h2>
+            <p>{{developerAccount()?.numberOrange}}</p>
+        </div>
+        @if(!isUpdate()){
+            <button mat-flat-button type="button" (click)="update()">
+                Modifier
+                    <!-- @if(store.loading()){
+                        <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+                    }@else {
+                        Se connecter
+                    } -->
+            </button>
+        }
+
+    </div>
+</div>

@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7f9;
+}
+::ng-deep .white-spinner circle {
+  stroke: #010030 !important;
+}
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-panel {
+    width: 50%;
+    background: linear-gradient(180deg, #8074ee,#160891, #010030);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.logo {
+    width: 350px;
+    margin-bottom: 20px;
+}
+
+.description {
+    max-width: 400px;
+    text-align: center;
+    p{
+        font-size: 20px;
+    }
+}
+
+.right-panel {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    input{
+        font-size: 20px;
+    }
+}
+.right-panel form p.errors-msg{
+    background-color: rgb(255, 151, 151);
+    color: rgb(139, 0, 0);
+    padding: 5px 0;
+    text-align: center;
+    border-radius: 40px;
+}
+button {
+    padding: 10px;
+    background-color: #010030;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0077cc;
+}
+
+.register-link {
+    margin-top: 10px;
+    font-size: 14px;
+}

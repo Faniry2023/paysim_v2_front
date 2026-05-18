@@ -1,0 +1,88 @@
+<div class="container">
+    @if(developerStore.developer() !== null){
+        <form [formGroup]="projectFormGroup" (ngSubmit)="save()">
+            <h2>Créer un projet</h2>
+            <mat-form-field>
+                <mat-label>Nom du projet </mat-label>
+                <input matInput type="text" formControlName="proj_name" placeholder="Amazon">
+                <mat-error>Ce champ est obligatoire</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Lien du projet </mat-label>
+                <input matInput type="text" formControlName="link" placeholder="https://exemple.com">
+                <mat-error>Ce champ est obligatoire</mat-error>
+            </mat-form-field>
+            @if(apiKey() !== undefined && apiKey() !== ""){
+                <div class="api">
+                    <h2>Votre Api</h2>
+                    <p>{{apiKey()}}</p>
+                </div>
+            }
+            <button type="button" class="btn-api" (click)="getNewAPi()">
+                Générer un nouveau api
+                    <!-- @if(store.loading()){
+                        <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+                    }@else {
+                        Se connecter
+                    } -->
+            </button>
+            <button mat-flat-button type="submit" [disabled]="!projectFormGroup.valid || store.loading()">
+                @if(store.loading()){
+                    <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+                }@else {
+                    @if(isUpdate()){
+                        Modifier
+                    }@else {
+                        Enregistrer
+                    }
+                }
+            </button>
+        </form>
+        <div class="list-project">
+            <h2>Votre projets</h2>
+            <div class="list">
+                @for (item of store.projects(); track $index) {
+                    <a (click)="select(item)" [class.active]="(item.id === projectSelect()?.id)">{{item.projectName}}</a>
+                }
+                
+            </div>
+        </div>
+        <div class="informations">
+            <div class="one">
+                <h2>Nom du projet</h2>
+                @if(projectSelect() != null){
+                    <p>{{projectSelect()?.projectName}}</p>
+                }@else {
+                    <p>N/A</p>
+                }
+                
+            </div>
+            <div class="one">
+                <h2>Lien</h2>
+                @if(projectSelect() != null){
+                    <p>{{projectSelect()?.link}}</p>
+                }@else {
+                    <p>N/A</p>
+                }
+            </div>
+            <div class="one api" (click)="showApi.set(!showApi())">
+                <h2>Api</h2>
+                @if (!showApi() || projectSelect() === null) {
+                    <p>XXXXXXXX-XXXXXXXX-XXXXXXXX</p>
+                }@else {
+                    <p>{{projectSelect()?.apiKey}}</p>
+                }
+            </div>
+            <button type="button" class="update" (click)="update()">
+                Modifier
+                    <!-- @if(store.loading()){
+                        <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+                    }@else {
+                        Se connecter
+                    } -->
+            </button>
+        </div>
+    }@else {
+        <p class="no-dev">Vous devez créer un compte developpeur avant de créer des projets</p>
+    }
+</div>

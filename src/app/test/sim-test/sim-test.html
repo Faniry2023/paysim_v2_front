@@ -1,0 +1,185 @@
+<div class="container">
+
+  <!-- Choix du rôle -->
+  <div class="choice">
+    <a [class.active]="actor() === 'v'" (click)="actor.set('v')">Vendeur</a>
+    <a [class.active]="actor() === 'a'" (click)="actor.set('a')">Acheteur</a>
+  </div>
+
+  <!-- ──────────────── VENDEUR ──────────────── -->
+  @if (actor() === 'v') {
+    <div class="vendeur">
+
+      <!-- Info connexion utilisateur -->
+      @if (store.userConnectionId()) {
+        <p class="conn-info">🟢 Connecté (user) : <code>{{ store.userConnectionId() }}</code></p>
+      }
+
+      <!-- Bouton connecter le projet -->
+      <div class="project-connect">
+        <a class="btn-connect" (click)="connectProject()">
+          🔗 Connecter mon projet au Hub
+        </a>
+        @if (store.projectConnectionId()) {
+          <p class="conn-info">🟢 Projet connecté : <code>{{ store.projectConnectionId() }}</code></p>
+        }
+      </div>
+      @if (store.valueqr() === null) {
+      <!-- Étape 1 : Créer un paiement -->
+      <h2>1. Créer un paiement</h2>
+      <form [formGroup]="infoPayFormGroup" (ngSubmit)="save()">
+        <mat-form-field>
+          <mat-label>ApiKey</mat-label>
+          <input matInput type="text" formControlName="apiKey">
+          <mat-error>Ce champ est obligatoire (26 caractères)</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Id commande</mat-label>
+          <input matInput type="text" formControlName="idOrder">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Prix total</mat-label>
+          <input matInput type="number" formControlName="totalPrice">
+          <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Numéro téléphone</mat-label>
+          <input matInput type="text" formControlName="num">
+          <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <button mat-flat-button type="submit" [disabled]="!infoPayFormGroup.valid">
+          @if (store.loading()) {
+            <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+          } @else {
+            Enregistrer
+          }
+        </button>
+      </form>
+    }
+
+      <!-- Afficher le ValueQr reçu -->
+      @if (store.valueqr() !== null) {
+        <div class="qr-block">
+          <p class="qr">{{ store.valueqr()?.valueKey }}</p>
+          <p class="qr">{{ id_projet() }}</p>
+        </div>
+
+        <!-- Étape 2 : Répondre à un achat (VerifieBuyer) -->
+        <h2>2. Répondre aux achats</h2>
+        <form [formGroup]="sellerFormGroupe" (ngSubmit)="goHubVerifieBuyer()">
+          <mat-form-field>
+            <mat-label>Référence</mat-label>
+            <input matInput type="text" formControlName="ref">
+            <mat-error>Ce champ est obligatoire</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Connection Id</mat-label>
+            <input matInput type="text" formControlName="con">
+            <mat-error>Ce champ est obligatoire</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Id développeur</mat-label>
+            <input matInput type="text" formControlName="idDev">
+            <mat-error>Ce champ est obligatoire</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Raison</mat-label>
+            <input matInput type="text" formControlName="reason">
+            <mat-error>Ce champ est obligatoire</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Prix</mat-label>
+            <input matInput type="number" formControlName="price">
+            <mat-error>Ce champ est obligatoire</mat-error>
+          </mat-form-field>
+          <button mat-flat-button type="submit" [disabled]="!sellerFormGroupe.valid">
+            @if (store.loading()) {
+              <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+            } @else {
+              Envoyer
+            }
+          </button>
+        </form>
+      }
+
+    </div>
+  }
+
+  <!-- ──────────────── ACHETEUR ──────────────── -->
+  @if (actor() === 'a') {
+    <div class="ach">
+      <h1>K O T L I N</h1>
+
+      @if (store.userConnectionId()) {
+        <p class="conn-info">🟢 Connecté (user) : <code>{{ store.userConnectionId() }}</code></p>
+      }
+
+      <h2>Payer</h2>
+      <form [formGroup]="continuationFormGroup" (ngSubmit)="goHubVerifiePaySeller()">
+        <mat-form-field>
+          <mat-label>Id paiement</mat-label>
+          <input matInput type="text" formControlName="id_pay">
+          <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Id projet</mat-label>
+          <input matInput type="text" formControlName="id_proj">
+          <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Id acheteur</mat-label>
+          <input matInput type="text" formControlName="id_cust">
+          <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Raison</mat-label>
+          <input matInput type="text" formControlName="reason">
+          <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Numéro</mat-label>
+          <input matInput type="text" formControlName="number">
+          <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Prix</mat-label>
+          <input matInput type="number" formControlName="price">
+          <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Clé d'action</mat-label>
+          <input matInput type="text" formControlName="actionKey">
+          <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Numéro acheteur</mat-label>
+          <input matInput type="text" formControlName="numberCUstomer">
+          <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <button mat-flat-button type="submit" [disabled]="!continuationFormGroup.valid">
+          @if (store.loading()) {
+            <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+          } @else {
+            Payer
+          }
+        </button>
+      </form>
+    </div>
+  }
+
+  <!-- ──────────────── STATUT PAIEMENT ──────────────── -->
+  @if (store.isValide()) {
+    <div class="valide">
+      <div class="logo"><img src="ok validé.png" alt="Paiement validé"></div>
+      <h2>Paiement validé ✅</h2>
+    </div>
+  } @else {
+    <div class="info">
+      <h2>Paiement en attente...</h2>
+    </div>
+  }
+
+  <!-- Affichage des erreurs -->
+
+
+</div>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - PaySim</title>
+</head>
+<body>
+<div class="container">
+    <div class="left-panel">
+        <img src="PaySim.png" alt="PaySim Logo" class="logo">
+        <div class="description">
+            <h1>Bienvenue sur PaySim</h1>
+            <p>PaySim est une plateforme de simulation de paiements sécurisée.</p>
+            <p>Vous pouvez ajouter des fonds virtuels et les utiliser pour tester
+               vos projets ou vos sites nécessitant un paiement, sans risque financier.</p>
+            <p>Idéal pour les développeurs, étudiants et entreprises voulant
+               simuler des transactions dans un environnement contrôlé.</p>
+            <p>⚡ 100% gratuit — transactions simulées en temps réel.</p>
+        </div>
+    </div>
+    <div class="right-panel">
+        <img src="PaySim.png" alt="" width="200" height="200">
+        <form [formGroup]="loginFormGroup" (submit)="login()">
+            <mat-form-field>
+                <mat-label>Email </mat-label>
+                <input matInput type="email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Mot de passe </mat-label>
+                <input matInput type="password" [type]="hide() ? 'password' : 'text'" formControlName="mdp">
+                <mat-icon matSuffix (click)="togglePassword($event)" style="cursor: pointer;">
+                    {{hide() ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+            </mat-form-field>
+            <mat-checkbox matInput type="checkbox" formControlName="remember">Se souvenir de moi</mat-checkbox>
+            @if (!store.isErrorMe() || store.isError()) {
+                <p class="errors-msg">{{store.error()}}</p>
+            }
+            <button mat-flat-button type="submit" [disabled]="loginFormGroup.invalid || store.loading()">
+                @if(store.loading()){
+                    <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+                }@else {
+                    Se connecter
+                }
+            </button>
+            
+            <p class="register-link">Pas encore de compte ? <a href="/signin">Inscrivez-vous</a></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

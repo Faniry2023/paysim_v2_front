@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <app-menu></app-menu>
+
+
+    @if(pageStore.page() === 'Home'){ <app-homepage></app-homepage>}
+    @if(pageStore.page() === 'Developer'){ <app-developer></app-developer>}
+    @if(pageStore.page() === 'Project'){ <app-project></app-project>}
+    @if(pageStore.page() === 'Sim'){ 
+        <app-simulation></app-simulation>
+         <!-- <app-sim-test></app-sim-test> -->
+    }
+    
+     
+    
+</body>
+</html>
