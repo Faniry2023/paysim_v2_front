@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { UserStore } from '../../store/user.store';
 import { MatIcon } from '@angular/material/icon';
 import { PageStore } from '../../store/page.store';
@@ -9,7 +9,10 @@ import { PageStore } from '../../store/page.store';
   templateUrl: './menu.html',
   styleUrl: './menu.css',
 })
-export class Menu {
+export class Menu implements OnInit {
+  async ngOnInit(): Promise<void> {
+    await this.store.Me();
+  }
   menuShow = signal(true);
   store = inject(UserStore);
   pageStore = inject(PageStore);

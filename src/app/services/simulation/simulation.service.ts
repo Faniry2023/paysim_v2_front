@@ -13,8 +13,11 @@ export class SimulationService {
   private userConnection!: signalR.HubConnection;
   private projectConnection!: signalR.HubConnection;
   private httpClient = inject(HttpClient);
-  private baseUrl = "https://localhost:7110/";
-  private baseUrlHub = "https://localhost:7110/payhubs";
+  // private baseUrl = "https://localhost:7110/";
+  private baseUrl = "https://we-explore-mada.runasp.net/";
+  // private baseUrlHub = "https://localhost:7110/payhubs";
+  private baseUrlHub = "https://we-explore-mada.runasp.net/payhubs";
+
 
   paymentSuccess$ = new Subject<boolean>();
   paymentError$ = new Subject<string>();
