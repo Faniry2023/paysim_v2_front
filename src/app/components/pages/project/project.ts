@@ -20,6 +20,7 @@ export class Project implements OnInit{
     await this.developerStore.GetDeveloer();
     if(this.developerStore.developer() !== null){
       await this.store.GetAllProject();
+      this.developerSelect.set(this.developerStore.developer());
     }
     this.apiKey.set(undefined)
   }

@@ -57,16 +57,23 @@ export class Developer implements OnInit{
           id : this.isUpdate() ? this.developerAccount()?.id! : '',
           idUser: this.isUpdate() ? this.developerAccount()?.idUser! : '',
           cin: this.developerFormGroup.value.cin!,
-          numberYas:(yas === '') ? 'N/A' : yas!,
-          numberOrange:(org === '') ? 'N/A' : org!,
-          numberAirtel:(air === '') ? 'N/A' : air!,
+          numberYas:(yas === '') ? 'N/A' : yas!.toString(),
+          numberOrange:(org === '') ? 'N/A' : org!.toString(),
+          numberAirtel:(air === '') ? 'N/A' : air!.toString(),
         }
 
         if(this.isUpdate()){
           await this.developerStore.UpdateDeveloper(newDeveloper);
+                this.isCreateNewCompte.set(false)
+              this.developerFormGroup.disable();
           this.isUpdate.set(false);
         }else{
           await this.developerStore.NewDev(newDeveloper);
+          if(!this.developerStore.isError()){
+            this.isCreateNewCompte.set(false)
+            this.developerFormGroup.disable();
+            this.developerAccount.set(this.developerStore.developer());
+          }
         }
       }
     }

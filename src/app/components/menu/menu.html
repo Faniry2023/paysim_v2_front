@@ -1,8 +1,10 @@
 <div class="menu" [class.show]="menuShow()">
     <div class="header">
         <div class="logo"><img src="PaySim.png" alt=""></div>
-        <div class="firstname">RAFANOMEZANTSOA</div>
-        <div class="lastname">Mahazo Tina Faniry</div>
+        @if(!store.isError()){
+            <div class="firstname">{{store.user()?.firstName}}</div>
+            <div class="lastname">{{store.user()?.lastName}}</div>
+        }
     </div>
     <hr>
     <div class="sim">
