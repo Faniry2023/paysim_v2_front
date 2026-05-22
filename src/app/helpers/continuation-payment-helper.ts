@@ -5,6 +5,5 @@ export interface ContinuationPaymentHelper {
     reason: string;  
     number: string;  
     price: number;  
-    actionKey: string;  
-    numberCUstomer: string;  
+    actionKey: string;   
 }

@@ -91,7 +91,6 @@ export class SimulationService {
     number: string;
     price: number;
     actionKey: string;
-    numberCUstomer: string;
   }):Promise<void>{
     await this.userConnection.invoke('VerifiePaySeller',{
       IdPayment: payload.idPayment,
@@ -101,7 +100,6 @@ export class SimulationService {
       Number: payload.number,
       Price: payload.price,
       ActionKey: payload.actionKey,
-      NumberCUstomer: payload.numberCUstomer,
     });
   }
 
