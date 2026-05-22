@@ -4,4 +4,7 @@ export interface SellerCheckHelper {
     idDeveloper: string;
     reason: string;
     price: number;
+    buyerNumber: string;
+    buyerName: string;
+    sellerBalance: string;
 }

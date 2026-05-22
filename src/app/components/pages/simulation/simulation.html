@@ -68,6 +68,21 @@
                         <input matInput type="number" formControlName="price">
                         <mat-error>Ce champ est obligatoire</mat-error>
                     </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Solde </mat-label>
+                        <input matInput type="number" formControlName="balance">
+                        <mat-error>Ce champ est obligatoire</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Nom de l'acheteur </mat-label>
+                        <input matInput type="text" formControlName="name_b">
+                        <mat-error>Ce champ est obligatoire</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Numéro de l'acheteur </mat-label>
+                        <input matInput type="text" formControlName="num_b">
+                        <mat-error>Ce champ est obligatoire</mat-error>
+                    </mat-form-field>
                     <button mat-flat-button type="submit">
                         @if(store.loading()){
                             <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
@@ -121,12 +136,7 @@
                     <mat-label>Clé d'action </mat-label>
                     <input matInput type="text" formControlName="actionKey">
                     <mat-error>Ce champ est obligatoire</mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Numéro d'acheteur </mat-label>
-                    <input matInput type="text" formControlName="numberCUstomer">
-                    <mat-error>Ce champ est obligatoire</mat-error>
-                </mat-form-field>
+                </mat-form-field>h                                                                                                                                                                                          
                 <button mat-flat-button type="submit" [disabled]="!continuationFormGroup.valid">
                     @if(store.loading()){
                         <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>

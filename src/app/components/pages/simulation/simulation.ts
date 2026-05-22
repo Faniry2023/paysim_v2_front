@@ -36,7 +36,10 @@ export class Simulation implements OnInit{
     con: [''],
     idDev: ['',[Validators.required]],
     reason: ['',[Validators.required]],
-    price: [1,[Validators.required,Validators.min(1)]]
+    price: [1,[Validators.required,Validators.min(1)]],
+    balance: [1,[Validators.required,Validators.min(0)]],
+    name_b: ['',[Validators.required]],
+    num_b:['',[Validators.required]]
   })
   async ngOnInit(): Promise<void> {
     await this.store.connectUser();
@@ -72,7 +75,10 @@ export class Simulation implements OnInit{
       connectionId: v.con!,
       idDeveloper: v.idDev!,
       reason: v.reason!,
-      price: v.price!
+      price: v.price!,
+      sellerBalance: v.balance!.toString(),
+      buyerNumber: v.num_b!,
+      buyerName: v.name_b!
     }
     await this.store.verifieBuyer(seller);
   }
@@ -87,7 +93,6 @@ export class Simulation implements OnInit{
       number: v.number!,
       price: v.price!,
       actionKey: v.actionKey!,
-      numberCUstomer: v.numberCUstomer!
     };
 
     await this.store.verifiePaySeller(continuation);
