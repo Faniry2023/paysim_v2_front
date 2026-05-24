@@ -18,9 +18,28 @@ export class SimulationService {
   // private baseUrlHub = "https://localhost:7110/payhubs";
   private baseUrlHub = "https://we-explore-mada.runasp.net/payhubs";
 
+  // Stocke les intervalles pour pouvoir les arrêter si besoin
+  private userKeepAliveInterval: any;       // AJOUTÉ
+  private projectKeepAliveInterval: any;    // AJOUTÉ
+
 
   paymentSuccess$ = new Subject<boolean>();
   paymentError$ = new Subject<string>();
+  //appelé après chaque connexion réussie
+    private startKeepAlive(
+    connection: signalR.HubConnection,
+    existingInterval: any
+  ): any {
+    // Efface l'ancien intervalle si déjà actif
+    if (existingInterval) clearInterval(existingInterval);
+
+    return setInterval(() => {
+      if (connection.state === signalR.HubConnectionState.Connected) {
+        connection.invoke('Ping')
+          .catch(err => console.error('Ping failed:', err));
+      }
+    }, 15000);
+  }
 
     // ─── Connexion utilisateur (acheteur ou vendeur en tant qu'utilisateur) ───
   async connectUser(): Promise<string>{
@@ -41,7 +60,22 @@ export class SimulationService {
       this.paymentError$.next(msg);
     });
 
+    //relance le keep-alive après reconnexion automatique
+    this.userConnection.onreconnected(() => {
+      this.userKeepAliveInterval = this.startKeepAlive(
+        this.userConnection,
+        this.userKeepAliveInterval
+      );
+    });
+    
     await this.userConnection.start();
+
+
+    // démarre le keep-alive après connexion initiale
+    this.userKeepAliveInterval = this.startKeepAlive(
+      this.userConnection,
+      this.userKeepAliveInterval
+    );
     return this.userConnection.connectionId ?? '';
   }
 
@@ -60,9 +94,26 @@ export class SimulationService {
       this.paymentError$.next(msg)
     });
 
+
+    // relance le keep-alive après reconnexion automatique
+    this.projectConnection.onreconnected(() => {
+      this.projectKeepAliveInterval = this.startKeepAlive(
+        this.projectConnection,
+        this.projectKeepAliveInterval
+      );
+    });
+
     await this.projectConnection.start();
+  
+    // démarre le keep-alive après connexion initiale
+    this.projectKeepAliveInterval = this.startKeepAlive(
+      this.projectConnection,
+      this.projectKeepAliveInterval
+    );
     return this.projectConnection.connectionId ?? '';
   }
+
+  
 
 
   // ─── Appel hub : Vendeur envoie VerifieBuyer ───
