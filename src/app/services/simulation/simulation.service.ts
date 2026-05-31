@@ -13,10 +13,10 @@ export class SimulationService {
   private userConnection!: signalR.HubConnection;
   private projectConnection!: signalR.HubConnection;
   private httpClient = inject(HttpClient);
-  // private baseUrl = "https://localhost:7110/";
-  private baseUrl = "https://we-explore-mada.runasp.net/";
-  // private baseUrlHub = "https://localhost:7110/payhubs";
-  private baseUrlHub = "https://we-explore-mada.runasp.net/payhubs";
+  private baseUrl = "https://localhost:7110/";
+  // private baseUrl = "https://we-explore-mada.runasp.net/";
+  private baseUrlHub = "https://localhost:7110/payhubs";
+  // private baseUrlHub = "https://we-explore-mada.runasp.net/payhubs";
 
   // Stocke les intervalles pour pouvoir les arrêter si besoin
   private userKeepAliveInterval: any;       // AJOUTÉ
@@ -80,9 +80,9 @@ export class SimulationService {
   }
 
   // ─── Connexion projet (vendeur uniquement, avec type=project&id=...) ───
-  async connectProject(projectId: string): Promise<string>{
+  async connectProject(payId: string): Promise<string>{
     this.projectConnection = new signalR.HubConnectionBuilder()
-    .withUrl(`${this.baseUrlHub}?type=project&projectId=${projectId}`,{withCredentials:true})
+    .withUrl(`${this.baseUrlHub}?type=project&payId=${payId}`,{withCredentials:true})
     .withAutomaticReconnect()
     .build();
 

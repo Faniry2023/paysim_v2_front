@@ -15,7 +15,7 @@
             @if(apiKey() !== undefined && apiKey() !== ""){
                 <div class="api">
                     <h2>Votre Api</h2>
-                    <p>{{apiKey()}}</p>
+                    <div>{{apiKey()}}</div>
                 </div>
             }
             <button type="button" class="btn-api" (click)="getNewAPi()">
@@ -63,14 +63,6 @@
                     <p>{{projectSelect()?.link}}</p>
                 }@else {
                     <p>N/A</p>
-                }
-            </div>
-            <div class="one api" (click)="showApi.set(!showApi())">
-                <h2>Api</h2>
-                @if (!showApi() || projectSelect() === null) {
-                    <p>XXXXXXXX-XXXXXXXX-XXXXXXXX</p>
-                }@else {
-                    <p>{{projectSelect()?.apiKey}}</p>
                 }
             </div>
             <button type="button" class="update" (click)="update()">

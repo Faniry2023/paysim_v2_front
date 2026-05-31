@@ -23,9 +23,10 @@ export class Simulation implements OnInit{
   actor = signal<'v' | 'a'>('v');
   store = inject(SimulationStore);
   formBuilder = inject(FormBuilder);
-  id_project = signal<string | null>(null);
+  //id_project = signal<string | null>(null);
+  id_payment = signal<string | null>(null);
   infoPayFormGroup = this.formBuilder.group({
-    apiKey: ['',[Validators.required,Validators.maxLength(26),Validators.minLength(26)]],
+    apiKey: ['',[Validators.required]],
     idOrder: [''],
     totalPrice: [1,[Validators.required,Validators.min(1)]],
     num: ['',[Validators.required]]
@@ -48,12 +49,12 @@ export class Simulation implements OnInit{
   // ─── Vendeur : connecter son projet au Hub ───
   async connectProjet(): Promise<void>{
     this.projectConnect.set(false);
-    if(!this.id_project()){
+    if(!this.id_payment()){
       alert('Veuillez renseigner le Connection Id (Id du projet) avant de connecter.');
       return;
     }
 
-    await this.store.connectProject(this.id_project()!);
+    await this.store.connectProject(this.id_payment()!);
     this.projectConnect.set(true);
   }
 
@@ -65,7 +66,6 @@ export class Simulation implements OnInit{
     number:['',[Validators.required]],
     price:[0,[Validators.required]],
     actionKey:['',[Validators.required]],
-    numberCUstomer:['',[Validators.required]]
   })
   async goHubVerifieBuyer():Promise<void>{
     if(!this.sellerFormGroupe.value) return;
@@ -109,8 +109,9 @@ export class Simulation implements OnInit{
     await this.store.getInfo(infoPay);
     if(!this.store.valueqr()) return;
     const id = this.store.valueqr()?.valueKey;
-    const idProj = id?.match(/id_proj:([^/]+)/)?.[1]!;
-    this.id_project.set(idProj);
+   const paymentId = id?.match(/id:([^/]+)/)?.[1];
+    //const idProj = id?.match(/id_proj:([^/]+)/)?.[1]!;
+    this.id_payment.set(paymentId!);
   }
 
   async ngOnDestroy(): Promise<void>{}
