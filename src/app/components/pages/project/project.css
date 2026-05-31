@@ -60,11 +60,6 @@
         font-size: 20px;
     }
 }
-.informations .one.api{
-    cursor: pointer;
-    background-color: rgb(255, 241, 116);
-    color: black;
-}
 
 .container form{
     display: flex;
@@ -81,14 +76,25 @@
     }
 }
 .api{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     background-color: rgb(238, 238, 136);
     color: rgb(119, 119, 0);
+    max-width: 300px;
     h2{
         font-weight: bold;
     }
-    p{
-        font-size: 15px;
+    div{
+        word-wrap: break-word;
+        width: 100%;
+        padding-left: 20px;
+        text-align: center;
         letter-spacing: 3px;
+        font-size: 18px;
+        line-height: 1.2;
+        font-weight: 700;
     }
     padding: 10px 15px;
     margin-bottom: 20px;
