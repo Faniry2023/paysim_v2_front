@@ -9,7 +9,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>,
     const router = inject(Router);
     const store = inject(UserStore);
 
-    if(req.url.match(/\/(signin|signup|me)$/)){
+    if(req.url.match(/\/(signin|signup|me|developer\/info\/setup)$/)){
       return next(req);
     }
 

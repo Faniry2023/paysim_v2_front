@@ -1,0 +1,237 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter, sans-serif;
+}
+
+::ng-deep .white-spinner circle {
+  stroke: #ffffff !important;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background:#0d1117; /* GitHub dark */
+    color:#e6edf3;
+}
+
+/* background glow */
+.bg{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(140px);
+    z-index:-1;
+}
+
+.blur1{
+    width:400px;
+    height:400px;
+    background:#7c3aed30;
+    top:-120px;
+    left:-120px;
+}
+
+.blur2{
+    width:500px;
+    height:500px;
+    background:#2563eb25;
+    bottom:-180px;
+    right:-180px;
+}
+
+/* layout */
+.container{
+    height:100vh;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+/* header */
+.header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.logo-box{
+    width:170px;
+    height:170px;
+    background:white;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow: hidden;
+    padding: 0;
+}
+
+.logo-box img{
+    margin: 0;
+    width:300px;
+    /* object-fit:contain; */
+}
+
+.header-text h1{
+    font-size:20px;
+}
+
+.header-text p{
+    font-size:12px;
+    color:#9da7b3;
+}
+
+/* top forms */
+.forms{
+    flex:1;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.card{
+    background:#161b22;
+    border:1px solid #30363d;
+    border-radius:14px;
+    padding:14px;
+}
+
+h2{
+    font-size:15px;
+    margin-bottom:10px;
+}
+
+/* inputs */
+.form-group{
+    margin-bottom:6px;
+}
+
+label{
+    font-size:11px;
+    color:#9da7b3;
+}
+
+input{
+    width:100%;
+    height:34px;
+    background:#0d1117;
+    border:1px solid #30363d;
+    border-radius:8px;
+    padding:0 10px;
+    color:white;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+button{
+    margin-top:8px;
+    width:100%;
+    height:38px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-weight:600;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    cursor:pointer;
+}
+
+/* bottom section */
+.bottom-section{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:14px;
+}
+
+/* kotlin */
+.desc{
+    font-size:11px;
+    color:#9da7b3;
+    margin-bottom:8px;
+}
+
+.kotlin input{
+    margin-bottom:6px;
+}
+.kotlin h3{
+    color: rgb(255, 255, 61);
+}
+
+/* status box */
+.status-box{
+    padding:14px;
+    border-radius:10px;
+    font-weight:600;
+    text-align:center;
+}
+.status-box.succes{
+    background:rgba(34,197,94,0.1);
+    border:1px solid #22c55e;
+    color:#22c55e;
+}
+.status-box.await{
+    background:rgba(58, 57, 0, 0.1);
+    border:1px solid #ffd900;
+    color:#ffd900;; 
+}
+.status-box.error{
+    background:rgba(58, 0, 0, 0.1);
+    border:1px solid #fd3030;
+    color:#fd3030;; 
+}
+.status-box.null{
+    background:rgba(253, 253, 253, 0.1);
+    border:1px solid #ffffff;
+    color:#ffffff;; 
+}
+
+.small{
+    font-size:11px;
+    color:#9da7b3;
+    margin-top:8px;
+}
+
+/* payload */
+.payload{
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+    font-size:12px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    font-family:monospace;
+}
+.msg-error{
+    color: rgb(255, 26, 26);
+}
+.input-error{
+    border: 2px red solid;
+    outline: red;
+}
+.header-text h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.header-text h2 .rond{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.header-text h2 .rond.not-connect{
+    background-color: red;
+}
+.header-text h2 .rond.connect{
+    background-color: rgb(16, 194, 0);
+}
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

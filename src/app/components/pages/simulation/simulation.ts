@@ -105,6 +105,7 @@ export class Simulation implements OnInit{
       idOrder: v.idOrder!,
       totalprice: v.totalPrice!,
       infoNumber: v.num!,
+      email:"exemple.com"
     };
     await this.store.getInfo(infoPay);
     if(!this.store.valueqr()) return;

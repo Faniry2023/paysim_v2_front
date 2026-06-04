@@ -3,4 +3,5 @@ export interface InfoPaiDevHelper {
     idOrder:string
     totalprice:number
     infoNumber:string
+    email:string
 }

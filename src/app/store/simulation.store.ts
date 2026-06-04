@@ -67,6 +67,14 @@ export const SimulationStore = signalStore(
         async connectProject(projectId: string):Promise<void>{
             try{
                 const connectionId = await service.connectProject(projectId);
+
+                //Ecouter PaymentSucces
+                service.paymentSuccess$.subscribe((ok) =>{
+                    if(ok) patchState(store,{isValide: true});
+                });
+                service.paymentError$.subscribe((msg) =>{
+                    patchState(store,{error: msg});
+                })
                 patchState(store,{projectConnectionId: connectionId});
             }catch(e){
                 console.error('Erreur connexion projet Hub:', e);
@@ -87,10 +95,16 @@ export const SimulationStore = signalStore(
 
       // ─── Acheteur envoie VerifiePaySeller au Hub ───
       async verifiePaySeller(payload: ContinuationPaymentHelper):Promise<void>{
+        
         patchState(store,{loading: true, error: null});
         try{
+            
             await service.verifiePaySeller(payload);
+            // console.log('continuation dans store')
+            patchState(store,{loading:false});
+            
         }catch(e: any){
+            console.error('Erreur verifiePaySeller:', e);
             patchState(store,{error: 'Erreur lors de la vérification acheteur'});
         }finally{
             patchState(store,{loading:false});
