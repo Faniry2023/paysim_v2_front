@@ -1,1 +1,227 @@
-<p>off-sim works!</p>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaySim Simulator</title>
+
+</head>
+
+<body>
+
+<div class="bg blur1"></div>
+<div class="bg blur2"></div>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo-box">
+            <img src="paysim_icone_v2.svg" alt="logo">
+        </div>
+
+        <div class="header-text">
+            <h1>PaySim Simulator</h1>
+            <p>
+                Tester la connexion entre votre projet et PaySim pour simuler les paiements,
+                les callbacks et les réponses API.
+            </p>
+            <h2>Projet <div class="rond" [class.connect] = "projectConnect()" [class.not-connect] = "!projectConnect()"></div></h2>
+        </div>
+
+    </header>
+
+    <!-- TOP FORMS -->
+    <div class="forms">
+
+        <!-- FORM 1 -->
+        <section class="card">
+            <h2>Transaction</h2>
+            <form [formGroup]="infoPayFormGroup" (ngSubmit)="save()">
+
+                <div class="form-group">
+                    <label>ApiKey</label>
+                    <input type="text"  formControlName="apiKey" [class.input-error]="isFieldValidCreatePay('apiKey')">
+                </div>
+
+                <div class="form-group">
+                    <label>Id Commande</label>
+                    <input type="text"  formControlName="idOrder">
+                </div>
+
+                <div class="form-group">
+                    <label>Prix Total</label>
+                    <input type="number"  formControlName="totalPrice" [class.input-error]="isFieldValidCreatePay('totalPrice')">
+                </div>
+
+                <div class="form-group">
+                    <label>Numéro Téléphone</label>
+                    <input type="text"  formControlName="num" [class.input-error]="isFieldValidCreatePay('num')">
+                </div>
+                <div class="form-group">
+                    <label>Votre email</label>
+                    <input type="text"  formControlName="email" [class.input-error]="isFieldValidCreatePay('email')">
+                </div>
+
+                <button type="submit" [disabled]="!infoPayFormGroup.valid">
+                    @if(loadingInfoPay()){
+                        <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+                    }@else{
+                        Simuler
+                    }
+                </button>
+            </form>
+        </section>
+
+        <!-- FORM 2 -->
+        <section class="card">
+            <h2>Callback API</h2>
+
+            <form [formGroup]="sellerFormGroupe" (ngSubmit)="goHubVerifieBuyer()">
+                <div class="grid-2">
+
+                    <div class="form-group">
+                        <label>Reference</label>
+                        <input type="text" formControlName="ref" [class.input-error]="isFieldValidSeller('ref')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Connection ID</label>
+                        <input type="text" formControlName="con" [class.input-error]="isFieldValidSeller('con')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>ID Dev</label>
+                        <input type="text" formControlName="idDev" [class.input-error]="isFieldValidSeller('idDev')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Reason</label>
+                        <input type="text" formControlName="reason" [class.input-error]="isFieldValidSeller('reason')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Prix</label>
+                        <input type="number" formControlName="price" [class.input-error]="isFieldValidSeller('price')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Solde</label>
+                        <input type="number" formControlName="balance" [class.input-error]="isFieldValidSeller('balance')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nom Acheteur</label>
+                        <input type="text" formControlName="name_b" [class.input-error]="isFieldValidSeller('name_b')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Numéro Acheteur</label>
+                        <input type="text" formControlName="num_b" [class.input-error]="isFieldValidSeller('num_b')">
+                    </div>
+
+                </div>
+
+                <button type="submit" [disabled]="!sellerFormGroupe.valid">
+                    @if(loadingSeller()){
+                        <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+                    }@else{
+                        Vérifier
+                    }
+                </button>
+            </form>
+        </section>
+
+    </div>
+
+    <!-- 🔥 NEW SECTION (KOTLIN SIMULATION + STATUS) -->
+    <div class="bottom-section">
+
+        <!-- SIMULATION MOBILE -->
+        <div class="card kotlin">
+
+            <h2>Simulation Kotlin (Mobile App)</h2>
+            <h3>Dans cette partie, vous devez vous connecté au paySim</h3>
+
+            <p class="desc">
+                Simulation côté application mobile Android (Kotlin).
+                Cette section représente les données envoyées depuis une app vers PaySim API.
+            </p>
+
+            <form [formGroup]="continuationFormGroup" (ngSubmit)="goHubVerifiePaySeller()">
+                <div class="grid-2">
+
+                    <input placeholder="id_payment" formControlName="id_pay" [class.input-error]="isFieldValidContinuation('id_pay')">
+                    <input placeholder="id_projet" formControlName="id_proj" [class.input-error]="isFieldValidContinuation('id_proj')">
+
+                    <input placeholder="id_acheteur" formControlName="id_cust" [class.input-error]="isFieldValidContinuation('id_cust')">
+                    <input placeholder="raison" formControlName="reason" [class.input-error]="isFieldValidContinuation('reason')">
+
+                    <input placeholder="numero acheteur" formControlName="number" [class.input-error]="isFieldValidContinuation('number')">
+                    <input placeholder="prix" formControlName="price" [class.input-error]="isFieldValidContinuation('price')">
+
+                    <input placeholder="clé action" formControlName="actionKey" [class.input-error]="isFieldValidContinuation('actionKey')">
+                </div>
+
+                <button type="submit" [disabled]="!continuationFormGroup.valid">
+                    @if(loadingConti()){
+                        <mat-spinner class="white-spinner" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+                    }@else{
+                        Envoyer Simulation
+                    }
+                    
+                </button>
+            </form>
+
+        </div>
+
+        <!-- STATUS BOX -->
+        <div class="card status">
+
+            <h2>Statut Paiement</h2>
+            @if(!paymentRun() && !store.isValide() && !store.error()){
+                <div class="status-box null">
+                    Aucune action
+                </div>
+            }
+            @if(paymentRun() && !store.isValide()){
+                <div class="status-box await">
+                    Paiement en attente...
+                </div>
+            }
+            @if(store.isValide()){
+                <div class="status-box succes">
+                    ✔ Paiement validé avec succès
+                </div>
+            }
+            @if(store.error()){
+                <div class="status-box error">
+                    ⚠️ {{ store.error() }}
+                </div>
+            }
+            <p class="small">
+                Résultat en temps réel de la simulation API PaySim.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- PAYLOAD -->
+    <div class="payload">
+        @if(store.valueqr()){
+            {{store.valueqr()?.valueKey}}
+        }@else {
+            Aucune information
+        }
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

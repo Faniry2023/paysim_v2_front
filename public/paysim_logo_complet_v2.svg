@@ -1,0 +1,37 @@
+<svg width="100%" viewBox="0 0 680 200" role="img" xmlns="http://www.w3.org/2000/svg" style="">
+  <title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">PaySim logo complet v2</title>
+  <desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Logo PaySim élégant — icône QR scan arrondie avec texte PaySim et tagline</desc>
+
+  <!-- Icône fond arrondi -->
+  <rect x="30" y="30" width="140" height="140" rx="36" fill="#1A1A2E" style="fill:rgb(26, 26, 46);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- QR symbol stylisé : 3 coins carrés arrondis -->
+  <!-- coin haut gauche -->
+  <rect x="58" y="58" width="36" height="36" rx="8" fill="none" stroke="#FFFFFF" stroke-width="5" style="fill:none;stroke:rgb(255, 255, 255);color:rgb(255, 255, 255);stroke-width:5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <rect x="68" y="68" width="16" height="16" rx="3" fill="#4F46E5" style="fill:rgb(79, 70, 229);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- coin haut droit -->
+  <rect x="106" y="58" width="36" height="36" rx="8" fill="none" stroke="#FFFFFF" stroke-width="5" style="fill:none;stroke:rgb(255, 255, 255);color:rgb(255, 255, 255);stroke-width:5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <rect x="116" y="68" width="16" height="16" rx="3" fill="#4F46E5" style="fill:rgb(79, 70, 229);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- coin bas gauche -->
+  <rect x="58" y="106" width="36" height="36" rx="8" fill="none" stroke="#FFFFFF" stroke-width="5" style="fill:none;stroke:rgb(255, 255, 255);color:rgb(255, 255, 255);stroke-width:5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <rect x="68" y="116" width="16" height="16" rx="3" fill="#4F46E5" style="fill:rgb(79, 70, 229);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- points QR bas droit stylisés (données) -->
+  <rect x="108" y="108" width="9" height="9" rx="2" fill="#FFFFFF" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <rect x="121" y="108" width="9" height="9" rx="2" fill="#4F46E5" style="fill:rgb(79, 70, 229);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <rect x="108" y="121" width="9" height="9" rx="2" fill="#4F46E5" style="fill:rgb(79, 70, 229);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <rect x="121" y="121" width="9" height="9" rx="2" fill="#FFFFFF" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Ligne scan animée suggestion -->
+  <line x1="50" y1="100" x2="150" y2="100" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" opacity="0.5" style="fill:rgb(0, 0, 0);stroke:rgb(79, 70, 229);color:rgb(255, 255, 255);stroke-width:2px;stroke-linecap:round;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Texte Pay -->
+  <text x="196" y="108" font-family="Arial Rounded MT Bold, Arial, sans-serif" font-size="58" font-weight="800" fill="#1A1A2E" style="fill:rgb(26, 26, 46);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Arial Rounded MT Bold&quot;, Arial, sans-serif;font-size:58px;font-weight:800;text-anchor:start;dominant-baseline:auto">Pay</text>
+  <!-- Texte Sim accent -->
+  <text x="318" y="108" font-family="Arial Rounded MT Bold, Arial, sans-serif" font-size="58" font-weight="800" fill="#4F46E5" style="fill:rgb(79, 70, 229);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Arial Rounded MT Bold&quot;, Arial, sans-serif;font-size:58px;font-weight:800;text-anchor:start;dominant-baseline:auto">Sim</text>
+
+  <!-- Tagline -->
+  <text x="197" y="138" font-family="Arial, sans-serif" font-size="13" fill="#888888" letter-spacing="2.5" style="fill:rgb(136, 136, 136);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:13px;font-weight:400;text-anchor:start;dominant-baseline:auto">SIMPLE INSTANT MONEY</text>
+</svg>

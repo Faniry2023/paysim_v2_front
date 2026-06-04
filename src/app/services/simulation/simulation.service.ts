@@ -13,15 +13,16 @@ export class SimulationService {
   private userConnection!: signalR.HubConnection;
   private projectConnection!: signalR.HubConnection;
   private httpClient = inject(HttpClient);
-  // private baseUrl = "https://localhost:7110/";
-  private baseUrl = "https://we-explore-mada.runasp.net/";
-  // private baseUrlHub = "https://localhost:7110/payhubs";
-  private baseUrlHub = "https://we-explore-mada.runasp.net/payhubs";
+  private baseUrl = "https://localhost:7110/";
+  // private baseUrl = "https://we-explore-mada.runasp.net/";
+  private baseUrlHub = "https://localhost:7110/payhubs";
+  // private baseUrlHub = "https://we-explore-mada.runasp.net/payhubs";
 
   // Stocke les intervalles pour pouvoir les arrêter si besoin
   private userKeepAliveInterval: any;       // AJOUTÉ
   private projectKeepAliveInterval: any;    // AJOUTÉ
-
+  private apikey_local = "paysim_926fd72630d135c38c6d3f58f8f6e40f868de5fa096401fca0358baf49011cc8"
+  private apikey_online = "paysim_5dabeee3d89a5d6f36e727e243a67a45cdd733320919a4a9771380b4aa4a32d6"
 
   paymentSuccess$ = new Subject<boolean>();
   paymentError$ = new Subject<string>();
@@ -69,7 +70,7 @@ export class SimulationService {
     });
     
     await this.userConnection.start();
-
+// console.log('userConnection démarré, id:', this.userConnection.connectionId);
 
     // démarre le keep-alive après connexion initiale
     this.userKeepAliveInterval = this.startKeepAlive(
@@ -79,7 +80,7 @@ export class SimulationService {
     return this.userConnection.connectionId ?? '';
   }
 
-  // ─── Connexion projet (vendeur uniquement, avec type=project&id=...) ───
+  // ─── Connexion projet (vendeur uniquement, avec type=project&id=...) ─── 
   async connectProject(payId: string): Promise<string>{
     this.projectConnection = new signalR.HubConnectionBuilder()
     .withUrl(`${this.baseUrlHub}?type=project&payId=${payId}`,{withCredentials:true})
@@ -104,7 +105,7 @@ export class SimulationService {
     });
 
     await this.projectConnection.start();
-  
+  // console.log('connection id projet : ',this.projectConnection.connectionId)
     // démarre le keep-alive après connexion initiale
     this.projectKeepAliveInterval = this.startKeepAlive(
       this.projectConnection,
@@ -124,6 +125,7 @@ export class SimulationService {
     reason: string;
     price: number;
   }): Promise<void>{
+    // console.log('connectionId:', this.userConnection?.connectionId);
     await this.userConnection.invoke('VerifieBuyer',{
       Reference: payload.reference,
       ConnectionId: payload.connectionId,
@@ -131,6 +133,7 @@ export class SimulationService {
       Reason: payload.reason,
       Price: payload.price,
     });
+   
   }
 
   // ─── Appel hub : Acheteur envoie VerifiePaySeller ───
@@ -143,15 +146,19 @@ export class SimulationService {
     price: number;
     actionKey: string;
   }):Promise<void>{
+    // console.log('état:', this.userConnection?.state);
+    // console.log('connectionId:', this.userConnection?.connectionId);
+    // console.log(payload);
     await this.userConnection.invoke('VerifiePaySeller',{
-      IdPayment: payload.idPayment,
+      IdPayment: payload.idPayment.trim(),
       IdProject: payload.idProject,
       IdCustomer: payload.idCustomer,
       Reason: payload.reason,
       Number: payload.number,
-      Price: payload.price,
+      Price: Number(payload.price),
       ActionKey: payload.actionKey,
     });
+    // console.log('continuation:arriver sur service')
   }
 
   // ─── Déconnexion propre ───

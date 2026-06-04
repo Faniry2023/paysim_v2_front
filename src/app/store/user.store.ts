@@ -42,7 +42,7 @@ export const UserStore = signalStore(
                 const msgError = err?.detail;
                 
                 patchState(store, { error: msgError, loading: false ,isError:true});
-                console.log("detail erreur : " + store.error())
+                //console.log("detail erreur : " + store.error())
             }
         },
         async Signin(model: CompletUserHelper){
@@ -56,6 +56,7 @@ export const UserStore = signalStore(
                 
             }
         },
+        
         async Me(){
             patchState(store, { loading: true, error: null ,isErrorMe:false});
             try{
