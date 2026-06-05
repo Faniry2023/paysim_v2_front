@@ -37,6 +37,10 @@ body::before {
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     width: 550px;
     text-align: center;
+    img{
+      width: 200px;
+      height: auto;
+    }
 }
 
 form {
@@ -116,13 +120,22 @@ button:hover {
   .all-user{
     flex-direction: column;
   }
+  body{
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
   .register-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 10px;
     width: 200px;
-    justify-content: flex-start;
     padding: 0 50px;
+    overflow-x: hidden;
+    overflow-y: auto;
     img{
-      width: 100px;
+      width: 50px;
       height: auto;
     }
   }
