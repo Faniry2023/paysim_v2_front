@@ -6,10 +6,30 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(45deg, #4431e9, #010030);
+    /* background: linear-gradient(45deg, #4431e9, #010030); */
+    background: url("../../../../public/fond_login.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+body::before {
+    content: '';
+    position: fixed;    /* fixed pour couvrir toute la page */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        280deg,
+        rgba(2, 0, 26, 0.89) 0%,
+        rgba(2, 0, 26, 0.795) 50%,
+        rgba(2, 0, 26, 0.89) 100%
+    );
+    z-index: 0;         /* derrière le contenu */
 }
 
 .register-container {
+  z-index: 2;
     background: white;
     padding: 40px;
     
@@ -91,4 +111,19 @@ button:hover {
   padding: 5px 10px;
   border-radius: 5px;
   letter-spacing: 1px;
+}
+@media only screen and (max-width: 500px){
+  .all-user{
+    flex-direction: column;
+  }
+  .register-container{
+    margin-bottom: 10px;
+    width: 200px;
+    justify-content: flex-start;
+    padding: 0 50px;
+    img{
+      width: 100px;
+      height: auto;
+    }
+  }
 }
