@@ -5,6 +5,7 @@ import { Signin } from './pages/signin/signin';
 import { loggedOutGuard } from './guards/logged-out-guard';
 import { loggedInGuard } from './guards/logged-in-guard';
 import { OffSim } from './pages/off-sim/off-sim';
+import { Mode } from './test/mode/mode';
 
 export const routes: Routes = [
     {
@@ -29,5 +30,8 @@ export const routes: Routes = [
     },{
         path:'simulation_paysim',
         component:OffSim
+    },{
+        path:'mode',
+        component:Mode
     }
 ];
