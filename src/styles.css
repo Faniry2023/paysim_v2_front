@@ -1,4 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import 'material-icons/iconfont/material-icons.css';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root{
+    --color-primary:#e4e4e4; /*boutton principaux, liens, élément actifs, focus ring*/
+    --color-primary-hover:#e4e4e4; /*boutton principaux au survol*/
+    --color-primary:#e4e4e4; /*Badge,highlights,prix élément à mettre en valeur*/
+
+    --color-bg:white; /*Fond de tout las page*/
+    --color-bg-surface:white; /*Carte,panel,siderbar,modale,header*/
+    --color-bg-elevated:white; /*Hover sur surface, tooltips,dropdown,item selectionnés*/
+
+    --color-text-primary:white;/*Titre,labels,texte principal*/
+    --color-text-secondary:white;/*Sous-titre,description,placeholder*/
+    --color-text-disable:white;/*texte sur boutton,input desactiver*/
+
+    --color-border:white;/*Tous les bord,input,séparateur*/
+    --color-success:white;/*Message succes*/
+    --color-error:white;/*Erreur*/
+}
+:root[data-theme="dark"]{
+    --color-primary:#09014d;
+}
