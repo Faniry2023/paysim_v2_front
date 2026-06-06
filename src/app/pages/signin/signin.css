@@ -117,21 +117,30 @@ button:hover {
   letter-spacing: 1px;
 }
 @media only screen and (max-width: 500px){
-  .all-user{
-    flex-direction: column;
-  }
   body{
-    overflow-x: hidden;
     overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+  }
+  form{
+    width: 100%;
+  }
+  .all-user .personalInfo{
+    width: 100%;
+  }
+  .all-user .personalInfo mat-form-field{
+    width: 100%;
+  }
+  .personalInfo{
+    display: inline-block;
   }
   .register-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    display: inline-block;
+    margin-top: 40px;
     margin-bottom: 10px;
     width: 200px;
-    padding: 0 50px;
+    padding: 0 30px;
     overflow-x: hidden;
     overflow-y: auto;
     img{
