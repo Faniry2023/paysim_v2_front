@@ -49,9 +49,7 @@
                     @if(message()){
                         <p style="color: red; font-size: 10px;">*Votre mot de passe  n'est pas encore assez fort</p>
                     }
-                </mat-form-field>
-               
-                <!-- Barre de progression du mot de passe -->
+                    <!-- Barre de progression du mot de passe -->
                 @if(focus()){
                     <div class="password-bar">
                         <div class="bar yellow" [class.active]="(compteurTest >= 1)"></div>
@@ -59,6 +57,9 @@
                         <div class="bar blue" [class.active]="(compteurTest >= 3)"></div>
                     </div>
                 }
+                </mat-form-field>
+               
+                
                 <mat-form-field>
                     <mat-label>Confirmé votre mot de passe </mat-label>
                     <input matInput type="password"  formControlName="cfm" (focus)="onFocusCfm()">

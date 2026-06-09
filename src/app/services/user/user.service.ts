@@ -10,8 +10,8 @@ import { CompletUserHelper } from '../../helpers/complet-user-helper';
 })
 export class UserService {
   private httpClient = inject(HttpClient);
-  // private baseUrl = "https://localhost:7110/";
-  private baseUrl = "https://we-explore-mada.runasp.net/";
+  private baseUrl = "https://localhost:7110/";
+  // private baseUrl = "https://we-explore-mada.runasp.net/";
 
   signup(model: ConfidentialityModel):Observable<UserModel>{
     //console.log('arrive login service')
