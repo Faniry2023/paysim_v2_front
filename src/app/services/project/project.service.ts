@@ -9,8 +9,8 @@ import { ApiHelper } from '../../helpers/api-helper';
 })
 export class ProjectService {
   private httpClient = inject(HttpClient);
-  private baseUrl = "https://localhost:7110/";
-  // private baseUrl = "https://we-explore-mada.runasp.net/";
+  // private baseUrl = "https://localhost:7110/";
+  private baseUrl = "https://paysim.runasp.net/";
 
   getAllProject():Observable<ProjectModel[]>{
     return this.httpClient.get<ProjectModel[]>(this.baseUrl + 'project/getall',{withCredentials:true})
