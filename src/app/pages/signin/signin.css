@@ -56,6 +56,16 @@ form {
     .confInfo .mdp-re{
       width: 210px;
     }
+    .personalInfo{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      mat-form-field{
+        max-width: 200px;
+      }
+    }
   }
 }
 ::ng-deep .white-spinner circle {
