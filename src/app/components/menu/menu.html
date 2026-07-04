@@ -1,27 +1,55 @@
-<div class="menu" [class.show]="menuShow()">
-    <div class="header">
-        <div class="logo"><img src="PaySim.png" alt=""></div>
-        @if(!store.isError()){
-            <div class="firstname">{{store.user()?.firstName}}</div>
-            <div class="lastname">{{store.user()?.lastName}}</div>
-        }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="menu" [class.show]="menuShow()">
+        <div class="subject">
+            <div class="logo">
+                <div class="img">
+                    <img src="logo.png" alt="logo paysim">
+                </div>
+                @if(!store.isError()){
+                    <div class="name">
+                        <p>{{store.user()?.firstName}}</p>
+                        <p>{{store.user()?.lastName}}</p>
+                    </div>
+                }
+            </div>
+            <div class="menu-items">
+                <a><mat-icon>account_circle</mat-icon> Mon compte</a>
+                <a (click)="pageStore.setPageState('Sim')" [class.active]="pageStore.page() === 'Sim'"><mat-icon>model_training</mat-icon> Simulation</a>
+                <a (click)="pageStore.setPageState('Developer')" [class.active]="pageStore.page() === 'Developer'"><mat-icon>dashboard</mat-icon> Portail</a>
+                <a (click)="pageStore.setPageState('Project')" [class.active]="pageStore.page() === 'Project'"><mat-icon>public</mat-icon> Projet</a>
+                <a><mat-icon>receipt_long</mat-icon> Transaction</a>
+                <a><mat-icon>article</mat-icon> Documentation</a>
+                <a (click)="pageStore.setPageState('app_mobile')" [class.active]="pageStore.page() === 'app_mobile'"><mat-icon>widgets</mat-icon> Application</a>
+            </div>
+        </div>
+        <div class="exit">
+            <a  (click)="openDialogLogout()"><mat-icon>logout</mat-icon> Se deconnecter</a>
+            <a (click)="menuShow.set(false)"><mat-icon>arrow_back</mat-icon></a>
+        </div>
     </div>
-    <hr>
-    <div class="sim">
-        <a  (click)="pageStore.setPageState('Sim')" [class.active]="pageStore.page() === 'Sim'">
-            <img src="simulation.png" alt="">
-        </a>
-    </div>
-    <div class="items">
-        <a (click)="pageStore.setPageState('Developer')" [class.active]="pageStore.page() === 'Developer'">Developpeur</a>
-        <a (click)="pageStore.setPageState('Project')" [class.active]="pageStore.page() === 'Project'">Projet</a>
-    </div>
-    <div class="logout">
-        <a (click)="logout()">Déconnection</a>
-        <a class="rtr" (click)="menuShow.set(false)"><mat-icon>arrow_back</mat-icon></a>
-    </div>
-</div>
 
-<div class="showGo" [class.hide]="menuShow()">
-    <a class="rtr" (click)="menuShow.set(true)"><mat-icon>arrow_forward</mat-icon></a>
-</div>
+    
+    <div class="menu-icon" [class.icon-show]="!menuShow()">
+        <div class="dev">
+            <a (click)="menuShow.set(true)"><mat-icon>arrow_forward</mat-icon></a>
+        </div>
+        <div class="menu-icon-items">
+            <a><mat-icon>account_circle</mat-icon></a>
+            <a (click)="pageStore.setPageState('Sim')" [class.active]="pageStore.page() === 'Sim'"><mat-icon>model_training</mat-icon></a>
+            <a (click)="pageStore.setPageState('Developer')" [class.active]="pageStore.page() === 'Developer'"><mat-icon>dashboard</mat-icon></a>
+            <a  (click)="pageStore.setPageState('Project')" [class.active]="pageStore.page() === 'Project'"><mat-icon>public</mat-icon></a>
+            <a><mat-icon>receipt_long</mat-icon></a>
+            <a><mat-icon>article</mat-icon></a>
+            <a (click)="pageStore.setPageState('app_mobile')" [class.active]="pageStore.page() === 'app_mobile'"><mat-icon>widgets</mat-icon></a>
+            <a  (click)="openDialogLogout()" class="lg"><mat-icon>logout</mat-icon></a>
+        </div>
+    </div>
+</body>
+</html>

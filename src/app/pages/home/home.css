@@ -1,7 +1,18 @@
 a{
-    background-color: blue;
+    background-color: rgb(194, 194, 228);
     color: white;
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
+}
+*,html,body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-bg);
 }

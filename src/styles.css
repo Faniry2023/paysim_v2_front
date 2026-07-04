@@ -4,22 +4,41 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 :root{
-    --color-primary:#e4e4e4; /*boutton principaux, liens, élément actifs, focus ring*/
-    --color-primary-hover:#e4e4e4; /*boutton principaux au survol*/
-    --color-primary:#e4e4e4; /*Badge,highlights,prix élément à mettre en valeur*/
+    --color-primary:rgb(0, 0, 175); /*boutton principaux, liens, élément actifs, focus ring*/
+    --color-primary-hover:rgb(0, 0, 92); /*boutton principaux au survol*/
+    --color-primary-select:rgb(23, 18, 56);/*boutton principaux au survol*/
+    --color-accent:rgb(224, 108, 0); /*Badge,highlights,prix élément à mettre en valeur*/
 
-    --color-bg:white; /*Fond de tout las page*/
-    --color-bg-surface:white; /*Carte,panel,siderbar,modale,header*/
-    --color-bg-elevated:white; /*Hover sur surface, tooltips,dropdown,item selectionnés*/
+    --color-bg:rgb(0, 0, 20); /*Fond de tout las page*/
+    --color-bg-surface:rgb(0, 34, 226); /*Carte,panel,siderbar,modale,header*/
+    --color-bg-elevated:rgb(34, 50, 143);; /*Hover sur surface, tooltips,dropdown,item selectionnés*/
 
-    --color-text-primary:white;/*Titre,labels,texte principal*/
-    --color-text-secondary:white;/*Sous-titre,description,placeholder*/
-    --color-text-disable:white;/*texte sur boutton,input desactiver*/
+    --color-text-primary:rgb(238, 238, 238);/*Titre,labels,texte principal*/
+    --color-text-secondary:rgb(207, 207, 207);/*Sous-titre,description,placeholder*/
+    --color-text-disable:rgb(36, 36, 36);/*texte sur boutton,input desactiver*/
 
-    --color-border:white;/*Tous les bord,input,séparateur*/
-    --color-success:white;/*Message succes*/
-    --color-error:white;/*Erreur*/
+    --color-border:rgb(42, 38, 255);/*Tous les bord,input,séparateur*/
+    --color-success:rgb(9, 114, 0);/*Message succes*/
+    --color-error:rgb(231, 25, 25);/*Erreur*/
+    --color-error-hover:rgb(161, 8, 8);/*Erreur*/
+    --color-alert:rgb(252, 255, 52);
 }
 :root[data-theme="dark"]{
-    --color-primary:#09014d;
+    --color-primary:rgb(0, 0, 175); /*boutton principaux, liens, élément actifs, focus ring*/
+    --color-primary-hover:rgb(0, 0, 92); /*boutton principaux au survol*/
+    --color-accent:rgb(224, 108, 0); /*Badge,highlights,prix élément à mettre en valeur*/
+
+    --color-bg:rgb(211, 211, 211); /*Fond de tout las page*/
+    --color-bg-surface:rgb(110, 121, 182); /*Carte,panel,siderbar,modale,header*/
+    --color-bg-elevated:rgb(63, 69, 105);; /*Hover sur surface, tooltips,dropdown,item selectionnés*/
+
+    --color-text-primary:rgb(2, 2, 2);/*Titre,labels,texte principal*/
+    --color-text-secondary:rgb(36, 36, 36);/*Sous-titre,description,placeholder*/
+    --color-text-disable:rgb(233, 233, 233);/*texte sur boutton,input desactiver*/
+
+    --color-border:rgb(42, 38, 255);/*Tous les bord,input,séparateur*/
+    --color-success:rgb(9, 114, 0);/*Message succes*/
+    --color-error:rgb(231, 25, 25);/*Erreur*/
+    --color-error-hover:rgb(168, 11, 11);/*Erreur*/
+    --color-alert:rgb(252, 255, 52);
 }
