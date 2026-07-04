@@ -1,9 +1,19 @@
 .container{
-    height: 100%;
-    width: 100%;
+    width: 1200px;
+    height: auto;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+    gap: 20px ;
+}
+form{
+    border: 2px blue double;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+form h2{
+    color: var(--color-text-primary);
 }
 .list-project{
     display: flex;
@@ -109,8 +119,9 @@
 
 
 .container .no-dev{
-    p{
-        font-size: 18px;
-        background-color: rgb(206, 229, 255);
-    }
+    font-size: 18px;
+    background-color: var(--color-text-primary);
+    padding: 10px;
+    border-radius: 10px;
+
 }
