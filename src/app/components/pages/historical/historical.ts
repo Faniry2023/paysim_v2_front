@@ -28,7 +28,7 @@ export class Historical implements OnInit{
       price: [null],
       date: [null]
     })
-    
+
     await this.historicalStore.getAllHistorical(this.page(),this.step());
     console.log('charge ....')
     console.log(this.historicalStore.historicals())
@@ -59,12 +59,15 @@ export class Historical implements OnInit{
   }
   async back(){
     this.loadNext.set(true);
-    this.page.set(this.page() - 1)
+    
     if(this.page() <= 0){
       this.page.set(0);
       this.loadBack.set(false);
     }else{
+      this.page.set(this.page() - 1)
       await this.historicalStore.getAllHistorical(this.page(), this.step());
+      if(this.page() <= 0)
+        this.loadBack.set(false)
     }
 
   }
