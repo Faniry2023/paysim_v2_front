@@ -6,7 +6,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 :root{
     --color-primary:rgb(0, 0, 175); /*boutton principaux, liens, élément actifs, focus ring*/
     --color-primary-hover:rgb(0, 0, 92); /*boutton principaux au survol*/
-    --color-primary-select:rgb(23, 18, 56);/*boutton principaux au survol*/
+    --color-primary-select:rgb(23, 18, 56);/*boutton principaux au Seléctionner ou cliqué*/
     --color-accent:rgb(224, 108, 0); /*Badge,highlights,prix élément à mettre en valeur*/
 
     --color-bg:rgb(0, 0, 20); /*Fond de tout las page*/
@@ -20,7 +20,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --color-border:rgb(42, 38, 255);/*Tous les bord,input,séparateur*/
     --color-success:rgb(9, 114, 0);/*Message succes*/
     --color-error:rgb(231, 25, 25);/*Erreur*/
-    --color-error-hover:rgb(161, 8, 8);/*Erreur*/
+    --color-error-hover:rgb(161, 8, 8);/*bordure erreur*/
     --color-alert:rgb(252, 255, 52);
 }
 :root[data-theme="dark"]{

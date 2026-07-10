@@ -6,10 +6,11 @@ import { Project } from '../../../components/pages/project/project';
 import { UserStore } from '../../../store/user.store';
 import { PageStore } from '../../../store/page.store';
 import { AppMobile } from '../../../components/app-mobile/app-mobile';
+import { Historical } from '../../../components/pages/historical/historical';
 
 @Component({
   selector: 'app-main',
-  imports: [Simulation,Developer,Project,AppMobile],
+  imports: [Simulation,Developer,Project,AppMobile,Historical],
   templateUrl: './main.html',
   styleUrl: './main.css',
 })
@@ -31,6 +32,9 @@ export class Main {
       case 'app_mobile':
         this.setPage('app_mobile');
         break;
+      case 'historical':
+        this.setPage('historical');
+        break;
       default:
         this.setPage('Home');
         break;
@@ -38,7 +42,7 @@ export class Main {
   }
 
 
-  setPage(page: 'Home' | 'Sim' | 'Developer' | 'Project' | 'app_mobile'){
+  setPage(page: 'Home' | 'Sim' | 'Developer' | 'Project' | 'app_mobile' | 'historical'){
     this.pageStore.setPageState(page);
   }
 }
