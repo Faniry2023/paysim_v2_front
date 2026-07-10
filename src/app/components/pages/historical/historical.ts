@@ -15,7 +15,7 @@ export class Historical implements OnInit{
   page = signal<number>(0);
   loadNext = signal<boolean>(false);
   loadBack = signal<boolean>(false);
-  step = signal<number>(2);
+  step = signal<number>(5);
   count = signal<number>(0);
   form!:FormGroup
   fb = inject(FormBuilder);
