@@ -10,7 +10,7 @@ import { ApiHelper } from '../../helpers/api-helper';
 export class DeveloperService {
   private httpClient = inject(HttpClient);
   //  private baseUrl = "https://localhost:7110/";
-  private baseUr:l = "https://paysim.runasp.net/";
+  private baseUrl = "https://paysim.runasp.net/";
 
   newDeveloper(model: DeveloperModel):Observable<DeveloperModel>{
     console.log(model);
