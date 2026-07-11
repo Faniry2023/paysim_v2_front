@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { HistoricalHelper } from '../../helpers/historical-helper';
+import { HistoricalSearchHelper } from '../../helpers/historical-search-helper';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,12 @@ export class HistoicalService {
     get<HistoricalHelper>(this.baseUrl + 'get/historical/user/' + page + '/' + step,{
       withCredentials:true
     }).pipe(catchError(this.handleError))
+  }
+
+  searchHistorical(model: HistoricalSearchHelper):Observable<HistoricalHelper>{
+    return this.httpClient.post<HistoricalHelper>(this.baseUrl + 'get/historical/user/seach',
+      model, {withCredentials:true}
+    ).pipe(catchError(this.handleError))
   }
 
 

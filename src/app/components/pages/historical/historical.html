@@ -41,13 +41,15 @@
             </tbody>
         </table>
     </div>
-    <div class="btn">
-        <a (click)="back()" [class.hide]="!loadBack()">Précedent</a>
-        
-        <a (click)="next()" [class.hide]="!loadNext()">Suivant</a>
-        
+    
+    @if(count() != 0){
+        <div class="btn">
+            <a (click)="back()" [class.hide]="!loadBack()">Précedent</a>
+            
+            <a (click)="next()" [class.hide]="!loadNext()">Suivant</a>
         </div>
         <div class="test">
             <p>{{(page() + 1)}} / {{count()}}</p>
         </div>
+    }
 </div>
