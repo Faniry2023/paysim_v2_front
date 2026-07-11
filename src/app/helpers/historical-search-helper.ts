@@ -5,4 +5,6 @@ export interface HistoricalSearchHelper {
     reason: string;
     price: number;
     date: string;
+    page: number;
+    step: number
 }

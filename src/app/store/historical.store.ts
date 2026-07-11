@@ -4,6 +4,7 @@ import { inject } from "@angular/core";
 import { HistoicalService } from "../services/historical/histoical.service";
 import { firstValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
+import { HistoricalSearchHelper } from "../helpers/historical-search-helper";
 
 export interface HistoricalState{
     historicals: HistoricalModel[] | [];
@@ -34,6 +35,16 @@ export const HistoricalStore = signalStore(
             patchState(store,{isLoading:true, isError:false, historicals: [] as HistoricalModel[]});
             try{
                 const historicalHelper = await firstValueFrom(service.getAllHistorical(page, step));
+                patchState(store,{isLoading: false,historicals: historicalHelper.historicals, count: historicalHelper.count, page: historicalHelper.page});
+            }catch(err: any){
+                patchState(store,{error:err?.detail,isLoading:false,isError:true});
+                toastr.error(err?.detail,'Erreur');
+            }
+        },
+        async searchHistorical(payback: HistoricalSearchHelper){
+            patchState(store,{isLoading:true, isError:false, historicals: [] as HistoricalModel[]});
+            try{
+                const historicalHelper = await firstValueFrom(service.searchHistorical(payback));
                 patchState(store,{isLoading: false,historicals: historicalHelper.historicals, count: historicalHelper.count, page: historicalHelper.page});
             }catch(err: any){
                 patchState(store,{error:err?.detail,isLoading:false,isError:true});
