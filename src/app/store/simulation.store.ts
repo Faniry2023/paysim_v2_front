@@ -90,7 +90,8 @@ export const SimulationStore = signalStore(
                     patchState(store,{error: msg});
                 })
         }catch(e:any){
-            patchState(store,{error:'Erreur lors de la vérification vendeur'});
+            console.error('Erreur lors de la vérification vendeur:', e);
+           // patchState(store,{error:'Erreur lors de la vérification vendeur'});
         }finally{
             patchState(store,{loading:false});
         }
@@ -111,7 +112,7 @@ export const SimulationStore = signalStore(
             
         }catch(e: any){
             console.error('Erreur verifiePaySeller:', e);
-            patchState(store,{error: 'Erreur lors de la vérification acheteur'});
+            //patchState(store,{error: 'Erreur lors de la vérification acheteur'});
         }finally{
             patchState(store,{loading:false});
         }
