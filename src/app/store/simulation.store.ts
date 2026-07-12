@@ -86,6 +86,9 @@ export const SimulationStore = signalStore(
         patchState(store,{loading: true, error: null});
         try{
             await service.verifieBuyer(payload);
+            service.paymentError$.subscribe((msg) =>{
+                    patchState(store,{error: msg});
+                })
         }catch(e:any){
             patchState(store,{error:'Erreur lors de la vérification vendeur'});
         }finally{
@@ -101,6 +104,9 @@ export const SimulationStore = signalStore(
             
             await service.verifiePaySeller(payload);
             // console.log('continuation dans store')
+            service.paymentError$.subscribe((msg) =>{
+                    patchState(store,{error: msg});
+                })
             patchState(store,{loading:false});
             
         }catch(e: any){
