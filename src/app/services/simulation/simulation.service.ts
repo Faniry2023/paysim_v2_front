@@ -131,6 +131,13 @@ export class SimulationService {
       Reason: payload.reason,
       Price: payload.price,
     });
+    this.userConnection.on('PaymentError',(msg: string) =>{
+      this.paymentError$.next(msg);
+    });
+
+    this.userConnection.on('Erreur',(msg: string) =>{
+      this.paymentError$.next(msg);
+    });
    
   }
 
@@ -157,6 +164,13 @@ export class SimulationService {
       ActionKey: payload.actionKey,
     });
     // console.log('continuation:arriver sur service')
+    this.userConnection.on('PaymentError',(msg: string) =>{
+      this.paymentError$.next(msg);
+    });
+
+    this.userConnection.on('Erreur',(msg: string) =>{
+      this.paymentError$.next(msg);
+    });
   }
 
   // ─── Déconnexion propre ───
