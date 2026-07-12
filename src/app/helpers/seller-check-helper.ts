@@ -6,5 +6,5 @@ export interface SellerCheckHelper {
     price: number;
     buyerNumber: string;
     buyerName: string;
-    sellerBalance: string;
+    sellerBalance: number;
 }

@@ -82,7 +82,7 @@ export class OffSim {
       idDeveloper: v.idDev!,
       reason: v.reason!,
       price: v.price!,
-      sellerBalance: v.balance!.toString(),
+      sellerBalance: v.balance!,
       buyerNumber: v.num_b!,
       buyerName: v.name_b!
     }
