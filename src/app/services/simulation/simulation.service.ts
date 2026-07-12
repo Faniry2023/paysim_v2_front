@@ -19,10 +19,8 @@ export class SimulationService {
   private baseUrlHub = "https://paysim.runasp.net/payhubs";
 
   // Stocke les intervalles pour pouvoir les arrêter si besoin
-  private userKeepAliveInterval: any;       // AJOUTÉ
-  private projectKeepAliveInterval: any;    // AJOUTÉ
-  private apikey_local = "paysim_926fd72630d135c38c6d3f58f8f6e40f868de5fa096401fca0358baf49011cc8"
-  private apikey_online = "paysim_5dabeee3d89a5d6f36e727e243a67a45cdd733320919a4a9771380b4aa4a32d6"
+  private userKeepAliveInterval: any;      
+  private projectKeepAliveInterval: any;    
 
   paymentSuccess$ = new Subject<boolean>();
   paymentError$ = new Subject<string>();
