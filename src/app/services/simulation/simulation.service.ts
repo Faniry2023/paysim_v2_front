@@ -122,6 +122,9 @@ export class SimulationService {
     idDeveloper: string;
     reason: string;
     price: number;
+    buyerNumber: string;
+    buyerName:string;
+    sellerBalance: number;
   }): Promise<void>{
     // console.log('connectionId:', this.userConnection?.connectionId);
     await this.userConnection.invoke('VerifieBuyer',{
@@ -130,6 +133,9 @@ export class SimulationService {
       IdDeveloper: payload.idDeveloper,
       Reason: payload.reason,
       Price: payload.price,
+      BuyerNumber: payload.buyerNumber,
+      BuyerName: payload.buyerName,
+      SellerBalance: payload.sellerBalance
     });
     this.userConnection.on('PaymentError',(msg: string) =>{
       this.paymentError$.next(msg);
