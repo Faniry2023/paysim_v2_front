@@ -16,10 +16,12 @@
         font-size: 40px;
         color: var(--color-text-primary);
     }
-    h2{
+    h2.balance{
         color: var(--color-text-primary);
         background-color:  var(--color-primary);
         padding: 5px 10px;
+        border: 2px white solid;
+        border-radius: 10px;
     }
     
 }
