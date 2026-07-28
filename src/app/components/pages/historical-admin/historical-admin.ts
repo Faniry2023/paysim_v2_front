@@ -32,7 +32,7 @@ export class HistoricalAdmin {
     })
     this.isSearch.set(false)
     await this.historicalSmsStore.getAllHistorical(this.page(),this.step());
-    console.log('charge ....')
+    console.log('count : ' + this.historicalSmsStore.count());
     if(this.historicalSmsStore.count() > this.step()){
       this.loadNext.set(true);
       var count_page = Math.floor(this.historicalSmsStore.count() / this.step());
