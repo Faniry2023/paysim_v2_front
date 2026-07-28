@@ -9,6 +9,7 @@ import { ConfidentialityModel } from "../models/confidentiality-model";
 
 export interface UserState{
     user: UserModel | null,
+    confidentiality: ConfidentialityModel | null;
     isError: boolean,
     error: string | null,
     loading: boolean,
@@ -18,6 +19,7 @@ export interface UserState{
 
 const initialState: UserState ={
     user: null,
+    confidentiality: null,
     isError: false,
     error: null,
     loading: false,
@@ -77,6 +79,16 @@ export const UserStore = signalStore(
                 const msgError = err?.detail;
                 patchState(store, { error: msgError, loading: false ,isError:true});
                 
+            }
+        },
+        async getConfidentiality(){
+            patchState(store, { loading: true, error: null ,isErrorMe:false});
+            try{
+                const conf = await firstValueFrom(service.getConfidentiality());
+                patchState(store, { confidentiality: conf, loading: false,isLogged:true });
+            }catch (err: any) {
+                const msgError = err?.detail;
+                patchState(store, { error: msgError, loading: false ,isErrorMe:true});
             }
         }
 
