@@ -11,9 +11,17 @@
     overflow: hidden;
 }
 
-.container h1{
-    font-size: 40px;
-    color: var(--color-text-primary);
+.container{
+    h1{
+        font-size: 40px;
+        color: var(--color-text-primary);
+    }
+    h2{
+        color: var(--color-text-primary);
+        background-color:  var(--color-primary);
+        padding: 5px 10px;
+    }
+    
 }
 .container .search{
     width: 100%;
