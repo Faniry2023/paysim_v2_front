@@ -6,6 +6,7 @@ import { loggedOutGuard } from './guards/logged-out-guard';
 import { loggedInGuard } from './guards/logged-in-guard';
 import { OffSim } from './pages/off-sim/off-sim';
 import { Mode } from './test/mode/mode';
+import { Documentation } from './pages/documentation/documentation';
 
 export const routes: Routes = [
     {
@@ -33,5 +34,10 @@ export const routes: Routes = [
     },{
         path:'mode',
         component:Mode
+    }
+    ,{
+        path:'documentation',
+        component:Documentation,
+        canActivate:[loggedInGuard]
     }
 ];

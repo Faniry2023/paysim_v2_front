@@ -1,6 +1,6 @@
 import { inject } from "@angular/core";
 import { UserModel } from "../models/user-model";
-import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
+import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
 import { UserService } from "../services/user/user.service";
 import { ToastrService } from 'ngx-toastr';
 import { CompletUserHelper } from "../helpers/complet-user-helper";

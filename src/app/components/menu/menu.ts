@@ -5,6 +5,7 @@ import { PageStore } from '../../store/page.store';
 import { DeveloperStore } from '../../store/developer.store';
 import { MatDialog } from '@angular/material/dialog';
 import { Logout } from '../popup/logout/logout';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -18,6 +19,7 @@ export class Menu implements OnInit {
     await this.store.Me();
     await this.developerStore.GetDeveloer();
   }
+  router = inject(Router);
   menuShow = signal(true);
   store = inject(UserStore);
   pageStore = inject(PageStore);
@@ -36,4 +38,8 @@ export class Menu implements OnInit {
       enterAnimationDuration:'200ms'
     })
   }
+  goToDoc(){
+    this.router.navigate(['/documentation']);
+  }
+  
 }
