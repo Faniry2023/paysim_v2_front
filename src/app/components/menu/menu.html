@@ -24,7 +24,9 @@
                 <a (click)="pageStore.setPageState('Sim')" [class.active]="pageStore.page() === 'Sim'"><mat-icon>model_training</mat-icon> Simulation</a>
                 <a (click)="pageStore.setPageState('Developer')" [class.active]="pageStore.page() === 'Developer'"><mat-icon>dashboard</mat-icon> Portail</a>
                 <a (click)="pageStore.setPageState('Project')" [class.active]="pageStore.page() === 'Project'"><mat-icon>public</mat-icon> Projet</a>
-                <a><mat-icon>receipt_long</mat-icon> Transaction</a>
+                @if(developerStore.developer()){
+                    <a (click)="pageStore.setPageState('historical-sms')" [class.active]="pageStore.page() === 'historical-sms'"><mat-icon>receipt_long</mat-icon> Transaction</a>
+                }
                 <a (click)="pageStore.setPageState('historical')" [class.active]="pageStore.page() === 'historical'"><mat-icon>history</mat-icon> Historique</a>
                 <a (click)="goToDoc()"><mat-icon>article</mat-icon> Documentation</a>
                 <a (click)="pageStore.setPageState('app_mobile')" [class.active]="pageStore.page() === 'app_mobile'"><mat-icon>widgets</mat-icon> Application</a>

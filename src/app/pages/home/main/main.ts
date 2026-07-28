@@ -8,10 +8,11 @@ import { PageStore } from '../../../store/page.store';
 import { AppMobile } from '../../../components/app-mobile/app-mobile';
 import { Historical } from '../../../components/pages/historical/historical';
 import { Documentation } from '../../documentation/documentation';
+import { HistoricalAdmin } from '../../../components/pages/historical-admin/historical-admin';
 
 @Component({
   selector: 'app-main',
-  imports: [Simulation,Developer,Project,AppMobile,Historical],
+  imports: [Simulation,Developer,Project,AppMobile,Historical,HistoricalAdmin],
   templateUrl: './main.html',
   styleUrl: './main.css',
 })
@@ -36,6 +37,9 @@ export class Main {
       case 'historical':
         this.setPage('historical');
         break;
+      case 'historical-sms':
+        this.setPage('historical-sms');
+        break;
       default:
         this.setPage('Home');
         break;
@@ -43,7 +47,7 @@ export class Main {
   }
 
 
-  setPage(page: 'Home' | 'Sim' | 'Developer' | 'Project' | 'app_mobile' | 'historical'){
+  setPage(page: 'Home' | 'Sim' | 'Developer' | 'Project' | 'app_mobile' | 'historical' | 'historical-sms'){
     this.pageStore.setPageState(page);
   }
 }
