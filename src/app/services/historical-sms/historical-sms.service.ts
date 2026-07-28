@@ -9,8 +9,8 @@ import { HistoricalSmsSearchHelper } from '../../helpers/historical-sms-search-h
 })
 export class HistoricalSmsService {
   private httpClient = inject(HttpClient);
-  private baseUrl = "https://localhost:7110/";
-  // private baseUrl = "https://paysim.runasp.net/";
+  // private baseUrl = "https://localhost:7110/";
+  private baseUrl = "https://paysim.runasp.net/";
 
   getAllHistorical(page: number, step: number): Observable<HistoricalSmsHelper>{
     return this.httpClient.
