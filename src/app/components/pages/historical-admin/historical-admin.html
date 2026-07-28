@@ -1,0 +1,55 @@
+<div class="container">
+    <h1>Historique de votre paiment</h1>
+    <div class="search">
+        <h2>Recherche : </h2>
+        <form [formGroup]="form" (ngSubmit)="search()">
+            <div class="input">
+                <input type="text" placeholder="Nom du client" formControlName="nameBuyer">
+                <input type="text" placeholder="Numéro du client" formControlName="numberBuyer">
+                <input type="text" placeholder="Référence..." formControlName="reference">
+                <input type="text" placeholder="Raison..." formControlName="reason">
+                <input type="text" placeholder="Prix" formControlName="price">
+                <input type="date" formControlName="date">
+            </div>
+            <button type="submit">Chercher...</button>
+        </form>
+    </div>
+    <div class="table-container">
+        <table class="historical-table">
+            <thead>
+                <tr>
+                    <th>Nom du client</th>
+                    <th>Numéro du client</th>
+                    <th>Référence</th>
+                    <th>Raison</th>
+                    <th>Prix</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (item of historicalSmsStore.historicals(); track $index) {
+                    <tr>
+                        <td>{{item.BuyerName}}</td>
+                        <td>{{item.BuyerNumber}}</td>
+                        <td>{{item.Reference}}</td>
+                        <td>{{item.Reason}}</td>
+                        <td>{{item.Price}}</td>
+                        <td>{{item.Created_at| date:'yyyy-MM-dd / HH:mm'}}</td>
+                    </tr>                    
+                }
+            </tbody>
+        </table>
+    </div>
+    
+    @if(count() != 0){
+        <div class="btn">
+            <a (click)="back()" [class.hide]="!loadBack()">Précedent</a>
+            
+            <a (click)="next()" [class.hide]="!loadNext()">Suivant</a>
+        </div>
+        <div class="test">
+            <p>{{(page() + 1)}} / {{count()}}</p>
+        </div>
+    }
+</div>

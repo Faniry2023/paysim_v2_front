@@ -1,0 +1,364 @@
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <span class="logo-text">PAY<span class="logo-accent">SIM</span></span>
+        <span class="logo-badge">DOCS</span>
+    </div>
+    <nav class="sidebar-nav">
+        <a class="nav-link" (click)="backToDashboard()">
+                Dashboard
+        </a>
+        @for (link of navLinks; track link.id) {
+            @if (link.group) {
+                <span class="nav-label">{{ link.group }}</span>
+            }
+            <a class="nav-link" [class.active]="activeSection === link.id" (click)="scrollTo(link.id)">
+                {{ link.label }}
+            </a>
+        }
+    </nav>
+    <div class="sidebar-baseurl">
+        <span class="baseurl-label">Base URL</span>
+        <code>paysim.runasp.net</code>
+    </div>
+</aside>
+
+<main class="main">
+
+    <!-- HERO -->
+    <section class="hero" id="intro">
+        <div class="hero-tag">Documentation · v1</div>
+        <h1 class="hero-title">Intégrez <span class="accent">PaySim</span><br>en 4 étapes</h1>
+        <p class="hero-sub">PaySim est une plateforme de paiement mobile Madagascar. Votre projet appelle un endpoint, génère un QR code, et écoute le hub SignalR — c'est tout.</p>
+        <div class="flow-bar">
+            <div class="flow-step">Setup</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">QR Code</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Hub SignalR</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step active">PaymentSuccess</div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- AUTH -->
+    <section class="section" id="auth">
+        <div class="section-head">
+            <span class="section-tag">Prérequis</span>
+            <h2>Authentification</h2>
+            <p>Chaque requête vers PaySim utilise une <strong>API Key</strong> que vous obtenez depuis votre tableau de bord développeur PaySim. Gardez-la secrète côté serveur.</p>
+        </div>
+        <div class="info-box">
+            <span class="info-icon">⚠</span>
+            <span>N'exposez jamais votre API Key dans le code frontend. Faites l'appel <code>/developer/info/setup</code> uniquement depuis votre backend.</span>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- STEP 1 -->
+    <section class="section" id="setup">
+        <div class="section-head">
+            <span class="section-tag">Étape 1</span>
+            <h2>Créer un paiement</h2>
+            <p>Avant d'afficher quoi que ce soit à l'utilisateur, votre backend doit créer une session de paiement. PaySim vérifie votre API Key, enregistre la commande et retourne une valeur QR.</p>
+        </div>
+
+        <div class="endpoint-block">
+            <div class="endpoint-line">
+                <span class="method post">POST</span>
+                <code class="endpoint-path">https://paysim.runasp.net/developer/info/setup</code>
+            </div>
+        </div>
+
+        <h3 class="block-title">Corps de la requête</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span>JSON</span>
+                <button class="copy-btn" (click)="copyCode('code-setup-req')">
+                    {{ getCopyLabel('code-setup-req') }}
+                </button>
+            </div>
+            <pre><code id="code-setup-req">{{ '{' }}
+  "apiKey": "VOTRE_API_KEY",
+  "idOrder": "CMD-001",
+  "totalprice": 5000,
+  "infoNumber": "yas",
+  "email": "client@email.com"
+{{ '}' }}</code></pre>
+        </div>
+
+        <div class="params-table">
+            <div class="param-row header">
+                <span>Champ</span><span>Type</span><span>Description</span>
+            </div>
+            <div class="param-row">
+                <code>apiKey</code><span class="type">string</span><span>Votre clé API projet</span>
+            </div>
+            <div class="param-row">
+                <code>idOrder</code><span class="type">string</span><span>Identifiant de votre commande interne</span>
+            </div>
+            <div class="param-row">
+                <code>totalprice</code><span class="type">decimal</span><span>Montant en Ariary</span>
+            </div>
+            <div class="param-row">
+                <code>infoNumber</code><span class="type">string</span><span><code>"yas"</code> / <code>"org"</code> / <code>"air"</code> — opérateur mobile money</span>
+            </div>
+            <div class="param-row">
+                <code>email</code><span class="type">string</span><span>Email de l'acheteur (facultatif)</span>
+            </div>
+        </div>
+
+        <h3 class="block-title">Réponse (200 OK)</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span>JSON</span>
+                <button class="copy-btn" (click)="copyCode('code-setup-res')">
+                    {{ getCopyLabel('code-setup-res') }}
+                </button>
+            </div>
+            <pre><code id="code-setup-res">{{ '{' }}
+  "valueKey": "id:XXXX/id_proj:XXXX/actionkey:CMD-001/reason:XXXX/number:034XXXXXXX/Price:5000"
+{{ '}' }}</code></pre>
+        </div>
+
+        <div class="info-box success">
+            <span class="info-icon">✓</span>
+            <span>PaySim pose aussi un cookie <code>jwtApiKey</code> (durée 7 min) utilisé pour la connexion au hub SignalR. Ce cookie est HttpOnly et Secure.</span>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- STEP 2 -->
+    <section class="section" id="qrcode">
+        <div class="section-head">
+            <span class="section-tag">Étape 2</span>
+            <h2>Afficher le QR Code</h2>
+            <p>Prenez le <code>valueKey</code> retourné et générez un QR code côté client. L'utilisateur scanne ce QR avec l'application PaySim mobile.</p>
+        </div>
+
+        <h3 class="block-title">Exemple — TypeScript (qrcode)</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span>TypeScript</span>
+                <button class="copy-btn" (click)="copyCode('code-qr')">
+                    {{ getCopyLabel('code-qr') }}
+                </button>
+            </div>
+            <pre><code id="code-qr">// npm install qrcode
+// npm install @types/qrcode --save-dev
+import QRCode from 'qrcode';
+
+const valueKey = response.valueKey;
+
+QRCode.toCanvas(document.getElementById('qr-canvas'), valueKey, {{ '{' }}
+  width: 256,
+  color: {{ '{' }} dark: '#000000', light: '#ffffff' {{ '}' }}
+{{ '}' }});</code></pre>
+        </div>
+
+        <div class="qr-preview">
+            <div class="qr-box">
+                <div class="qr-pattern"></div>
+                <p>QR Code affiché ici</p>
+            </div>
+            <div class="qr-info">
+                <p>Le QR Code contient toutes les informations du paiement :</p>
+                <ul>
+                    <li><code>id</code> — identifiant du paiement PaySim</li>
+                    <li><code>id_proj</code> — identifiant de votre projet</li>
+                    <li><code>actionkey</code> — votre référence commande</li>
+                    <li><code>reason</code> — code unique de la transaction</li>
+                    <li><code>number</code> — numéro mobile money du vendeur</li>
+                    <li><code>Price</code> — montant à payer</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- STEP 3 -->
+    <section class="section" id="hub">
+        <div class="section-head">
+            <span class="section-tag">Étape 3</span>
+            <h2>Connexion au Hub SignalR</h2>
+            <p>Votre frontend doit se connecter au hub SignalR de PaySim avec le cookie <code>jwtApiKey</code> et le paramètre <code>type=project</code> pour être notifié en temps réel du résultat du paiement.</p>
+        </div>
+
+        <div class="endpoint-block">
+            <div class="endpoint-line">
+                <span class="method ws">WS</span>
+                <code class="endpoint-path">https://paysim.runasp.net/payhubs?type=project&amp;payId=VOTRE_ID_PAYMENT</code>
+            </div>
+        </div>
+
+        <h3 class="block-title">Exemple — Angular (avec @microsoft/signalr)</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span>TypeScript</span>
+                <button class="copy-btn" (click)="copyCode('code-hub')">
+                    {{ getCopyLabel('code-hub') }}
+                </button>
+            </div>
+            <pre><code id="code-hub">import * as signalR from '@microsoft/signalr';
+
+const payId = 'VOTRE_ID_PAYMENT';
+
+const hub = new signalR.HubConnectionBuilder()
+  .withUrl('https://paysim.runasp.net/payhubs?type=project&payId=' + payId, {{ '{' }}
+    withCredentials: true
+  {{ '}' }})
+  .withAutomaticReconnect()
+  .build();
+
+hub.on('PaymentSuccess', (success: boolean) => {{ '{' }}
+  if (success) {{ '{' }}
+    confirmerCommande();
+  {{ '}' }}
+{{ '}' }});
+
+hub.on('Error', (message: string) => {{ '{' }}
+  console.error('PaySim erreur:', message);
+{{ '}' }});
+
+await hub.start();</code></pre>
+        </div>
+
+        <div class="info-box">
+            <span class="info-icon">⚠</span>
+            <span>La session expire après <strong>7 minutes</strong>. Si le paiement n'est pas effectué dans ce délai, redemandez un nouveau <code>valueKey</code> via <code>/developer/info/setup</code>.</span>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- STEP 4 -->
+    <section class="section" id="result">
+        <div class="section-head">
+            <span class="section-tag">Étape 4</span>
+            <h2>Traiter le résultat</h2>
+            <p>Quand l'acheteur scanne et confirme le paiement via l'app mobile PaySim, le hub envoie <code>PaymentSuccess</code> à votre frontend. C'est le signal pour confirmer la commande côté serveur.</p>
+        </div>
+
+        <div class="flow-detail">
+            <div class="flow-detail-step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <strong>Acheteur scanne le QR</strong>
+                    <p>L'app mobile PaySim lit le QR et affiche les détails du paiement à l'acheteur.</p>
+                </div>
+            </div>
+            <div class="flow-detail-step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <strong>Acheteur envoie le paiement MVola</strong>
+                    <p>L'acheteur fait un transfert MVola/Orange/Airtel. L'app reçoit le SMS de confirmation et l'envoie au hub.</p>
+                </div>
+            </div>
+            <div class="flow-detail-step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <strong>PaySim vérifie et valide</strong>
+                    <p>Le hub croise les données SMS avec la commande. Si tout correspond, il envoie <code>PaymentSuccess: true</code>.</p>
+                </div>
+            </div>
+            <div class="flow-detail-step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <strong>Votre projet reçoit la confirmation</strong>
+                    <p>Votre listener SignalR reçoit l'événement et vous pouvez confirmer/livrer la commande.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ENDPOINTS -->
+    <section class="section" id="endpoints">
+        <div class="section-head">
+            <span class="section-tag">Référence</span>
+            <h2>Endpoints</h2>
+        </div>
+        <div class="endpoints-list">
+            <div class="ep-item">
+                <span class="method post">POST</span>
+                <code>/developer/info/setup</code>
+                <span class="ep-desc">Créer une session de paiement</span>
+            </div>
+            <div class="ep-item">
+                <span class="method ws">WS</span>
+                <code>/payhubs</code>
+                <span class="ep-desc">Hub SignalR temps réel</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- MODELS -->
+    <section class="section" id="models">
+        <div class="section-head">
+            <span class="section-tag">Référence</span>
+            <h2>Modèles</h2>
+        </div>
+
+        <h3 class="block-title">InfoPaiDevHelper — Corps de la requête setup</h3>
+        <div class="code-block">
+            <div class="code-header"><span>C# / JSON</span></div>
+            <pre><code>{{ '{' }}
+  "apiKey":      string   // Clé API du projet
+  "idOrder":     string   // Référence commande interne
+  "totalprice":  decimal  // Montant en Ariary
+  "infoNumber":  string   // "yas" | "org" | "air"
+  "email":       string   // Email acheteur
+{{ '}' }}</code></pre>
+        </div>
+
+        <h3 class="block-title">ValueQr — Réponse setup</h3>
+        <div class="code-block">
+            <div class="code-header"><span>JSON</span></div>
+            <pre><code>{{ '{' }}
+  "valueKey": "id:X/id_proj:X/actionkey:X/reason:X/number:X/Price:X"
+{{ '}' }}</code></pre>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ERRORS -->
+    <section class="section" id="errors">
+        <div class="section-head">
+            <span class="section-tag">Référence</span>
+            <h2>Erreurs</h2>
+        </div>
+        <div class="params-table">
+            <div class="param-row header">
+                <span>Code</span><span>Titre</span><span>Cause</span>
+            </div>
+            <div class="param-row">
+                <span class="badge error">400</span><span>Requête invalide</span><span>Corps de requête manquant ou mal formé</span>
+            </div>
+            <div class="param-row">
+                <span class="badge error">401</span><span>Erreur authentification</span><span>API Key incorrecte ou expirée</span>
+            </div>
+            <div class="param-row">
+                <span class="badge error">404</span><span>Développeur introuvable</span><span>Projet sans développeur associé</span>
+            </div>
+            <div class="param-row">
+                <span class="badge error">500</span><span>Erreur serveur</span><span>Problème base de données PaySim</span>
+            </div>
+            <div class="param-row">
+                <code>Error</code><span>Hub SignalR</span><span>Problème de connexion ou session expirée</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <span>© 2026 PaySim — Tous droits réservés</span>
+    </footer>
+
+</main>

@@ -7,6 +7,7 @@ import { UserStore } from '../../../store/user.store';
 import { PageStore } from '../../../store/page.store';
 import { AppMobile } from '../../../components/app-mobile/app-mobile';
 import { Historical } from '../../../components/pages/historical/historical';
+import { Documentation } from '../../documentation/documentation';
 
 @Component({
   selector: 'app-main',
