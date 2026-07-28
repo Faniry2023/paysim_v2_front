@@ -13,10 +13,10 @@ export class SimulationService {
   private userConnection!: signalR.HubConnection;
   private projectConnection!: signalR.HubConnection;
   private httpClient = inject(HttpClient);
-  private baseUrl = "https://localhost:7110/";
-  // private baseUrl = "https://paysim.runasp.net/";
-  private baseUrlHub = "https://localhost:7110/payhubs";
-  // private baseUrlHub = "https://paysim.runasp.net/payhubs";
+  // private baseUrl = "https://localhost:7110/";
+  private baseUrl = "https://paysim.runasp.net/";
+  // private baseUrlHub = "https://localhost:7110/payhubs";
+  private baseUrlHub = "https://paysim.runasp.net/payhubs";
 
   // Stocke les intervalles pour pouvoir les arrêter si besoin
   private userKeepAliveInterval: any;      
