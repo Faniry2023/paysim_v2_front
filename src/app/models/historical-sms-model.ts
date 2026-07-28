@@ -1,14 +1,14 @@
 export interface HistoricalSmsModel {
-    Id: string;
-    Id_developer: string;
-    Id_user: string;
-    Name_customer: string;
-    Id_payement: string;
-    BuyerNumber: string;
-    BuyerName: string;
-    Reference: string;
-    Price: number;
-    Balance_seller: number;
-    Reason: string;
-    Created_at: string;
+    id: string;
+    id_developer: string;
+    id_user: string;
+    name_customer: string;
+    id_payement: string;
+    buyerNumber: string;
+    buyerName: string;
+    reference: string;
+    price: number;
+    balance_seller: number;
+    reason: string;
+    created_at: string;
 }

@@ -1,5 +1,6 @@
 <div class="container">
     <h1>Historique de votre paiment</h1>
+    <h2>Votre solde actuel est de : {{historicalSmsStore.balance()}}</h2>
     <div class="search">
         <h2>Recherche : </h2>
         <form [formGroup]="form" (ngSubmit)="search()">
@@ -30,12 +31,12 @@
             <tbody>
                 @for (item of historicalSmsStore.historicals(); track $index) {
                     <tr>
-                        <td>{{item.BuyerName}}</td>
-                        <td>{{item.BuyerNumber}}</td>
-                        <td>{{item.Reference}}</td>
-                        <td>{{item.Reason}}</td>
-                        <td>{{item.Price}}</td>
-                        <td>{{item.Created_at| date:'yyyy-MM-dd / HH:mm'}}</td>
+                        <td>{{item.buyerName}}</td>
+                        <td>{{item.buyerNumber}}</td>
+                        <td>{{item.reference}}</td>
+                        <td>{{item.reason}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.created_at| date:'yyyy-MM-dd / HH:mm'}}</td>
                     </tr>                    
                 }
             </tbody>
