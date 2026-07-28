@@ -1,4 +1,5 @@
 <div class="container">
+    @if (pageStore.page() == 'Account') {<app-account></app-account>}
     @if (pageStore.page() == 'Sim') {<app-simulation></app-simulation>}
     @if (pageStore.page() == 'Developer') {<app-developer></app-developer>}
     @if (pageStore.page() == 'Project') {<app-project></app-project>}
