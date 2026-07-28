@@ -1,1 +1,113 @@
-<p>account works!</p>
+<div class="account">
+
+  <!-- HEADER -->
+  <section class="account-hero">
+    <div class="avatar">{{ initials() }}</div>
+    <div class="profile-info">
+      <h1>{{ fullName() }}</h1>
+      <p class="profile-email">{{ userStore.confidentiality()?.email }}</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <div class="the-form">
+  <!-- INFOS PERSONNELLES (UserModel) -->
+  <section class="card">
+    <div class="card-head">
+      <span class="section-tag">Profil</span>
+      <h2>Informations personnelles</h2>
+    </div>
+
+    <form [formGroup]="userForm" class="account-form">
+      <div class="field">
+        <label>Nom</label>
+        @if (isEditingUser()) {
+          <input type="text" formControlName="firstName">
+        } @else {
+          <p class="field-value">{{ userStore.user()?.firstName || '—' }}</p>
+        }
+      </div>
+
+      <div class="field">
+        <label>Prénom</label>
+        @if (isEditingUser()) {
+          <input type="text" formControlName="lastName">
+        } @else {
+          <p class="field-value">{{ userStore.user()?.lastName || '—' }}</p>
+        }
+      </div>
+
+      <div class="field field-wide">
+        <label>Adresse</label>
+        @if (isEditingUser()) {
+          <input type="text" formControlName="address">
+        } @else {
+          <p class="field-value">{{ userStore.user()?.address || '—' }}</p>
+        }
+      </div>
+
+      <div class="field">
+        <label>Date de naissance</label>
+        @if (isEditingUser()) {
+          <input type="date" formControlName="birthday">
+        } @else {
+          <p class="field-value">{{ (userStore.user()?.birthday | date:'dd/MM/yyyy') || '—' }}</p>
+        }
+      </div>
+    </form>
+
+    <div class="form-actions">
+      @if (isEditingUser()) {
+        <button class="btn-ghost" (click)="cancelEditUser()">Annuler</button>
+        <button class="btn-primary" (click)="saveUser()">Enregistrer</button>
+      } @else {
+        <button class="btn-outline" (click)="startEditUser()">Modifier</button>
+      }
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONFIDENTIALITE (ConfidentialityModel) -->
+  <section class="card">
+    <div class="card-head">
+      <span class="section-tag">Sécurité</span>
+      <h2>Email et mot de passe</h2>
+    </div>
+
+    <form [formGroup]="confidentialityForm" class="account-form">
+      <div class="field field-wide">
+        <label>Email</label>
+        @if (isEditingConfidentiality()) {
+          <input type="email" formControlName="email">
+        } @else {
+          <p class="field-value">{{ userStore.confidentiality()?.email || '—' }}</p>
+        }
+      </div>
+
+      @if (isEditingConfidentiality()) {
+        <div class="field field-wide">
+          <label>Ancien mot de passe</label>
+          <input type="password" formControlName="passwordConf" placeholder="Mot de passe actuel">
+        </div>
+      }
+      @if (isEditingConfidentiality()) {
+        <div class="field field-wide">
+          <label>Nouveau mot de passe</label>
+          <input type="password" formControlName="password" placeholder="Laisser vide pour ne pas changer">
+        </div>
+      }
+    </form>
+
+    <div class="form-actions">
+      @if (isEditingConfidentiality()) {
+        <button class="btn-ghost" (click)="cancelEditConfidentiality()">Annuler</button>
+        <button class="btn-primary" (click)="saveConfidentiality()">Enregistrer</button>
+      } @else {
+        <button class="btn-outline" (click)="startEditConfidentiality()">Modifier</button>
+      }
+    </div>
+  </section>
+</div>
+</div>
