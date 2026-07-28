@@ -3,7 +3,6 @@ import { HistoricalSmsStore } from '../../../store/historical-sms.store';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HistoricalSmsSearchHelper } from '../../../helpers/historical-sms-search-helper';
 import { DatePipe } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-historical-admin',
@@ -24,8 +23,8 @@ export class HistoricalAdmin {
   historicalS = signal<HistoricalSmsSearchHelper | null>(null);
   async ngOnInit() {
      this.form = this.fb.group({
-      name_developer: [null],
-      number: [null],
+      nameBuyer: [null],
+      numberBuyer: [null],
       reference: [null],
       reason: [null],
       price: [null],
